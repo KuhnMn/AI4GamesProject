@@ -31,6 +31,7 @@ public class PatrolState : State
         }
         if (Input.GetKeyDown("i"))
         {
+            startPosition = Vector3.zero;
             startIdle = true;
         }
         if (startIdle)

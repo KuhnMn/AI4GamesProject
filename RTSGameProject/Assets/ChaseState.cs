@@ -26,7 +26,7 @@ public class ChaseState : State
         {
             startPatrol = true;
         }
-        if (Input.GetKeyDown("a"))
+        else if (findEnemies.enemiesInRange[0].Item1 <= 1.0f )
         {
             startAttack = true;
         }
