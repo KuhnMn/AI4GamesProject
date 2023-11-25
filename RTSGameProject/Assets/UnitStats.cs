@@ -13,6 +13,49 @@ public class UnitStats : MonoBehaviour
     public float moveSpeed;
     public float visionRange;
     public bool isDead;
+    public Team team;
+
+    public enum Team
+    {
+        GoodBean,
+        BadBean
+    }
+
+    void Start()
+    {
+        UnityEngine.AI.NavMeshAgent navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        if (navMeshAgent != null)
+        {
+            navMeshAgent.speed = moveSpeed;
+        }
+        gameObject.tag = team.ToString();
+        if (team == Team.GoodBean)
+        {
+            gameObject.GetComponent<Renderer>().material = Resources.Load<Material>("Materials/GoodBeanMaterial");
+            gameObject.layer = 7;
+        }
+        else
+        {
+            gameObject.GetComponent<Renderer>().material = Resources.Load<Material>("Materials/BadBeanMaterial");
+            gameObject.layer = 8;
+        }
+        isDead = false;
+    }
+
+    public void SetTeam(Team team)
+    {
+        this.team = team;
+        gameObject.tag = team.ToString();
+        if (team == Team.GoodBean)
+        {
+            gameObject.GetComponent<Renderer>().material = Resources.Load<Material>("Materials/GoodBeanMaterial");
+        }
+        else
+        {
+            gameObject.GetComponent<Renderer>().material = Resources.Load<Material>("Materials/BadBeanMaterial");
+        }
+    }
+
 
     public void TakeDamage(int enemyAttack)
     {
@@ -51,5 +94,46 @@ public class UnitStats : MonoBehaviour
     public int GetAttack()
     {
         return attack;
+    }
+
+    public float GetVisionRange()
+    {
+        return visionRange;
+    }
+
+    public float GetAttackRange()
+    {
+        return attackRange;
+    }
+
+    public float GetAttackSpeed()
+    {
+        return attackSpeed;
+    }
+
+    public float GetMoveSpeed()
+    {
+        return moveSpeed;
+    }
+
+    public float GetDefense()
+    {
+        return defense;
+    }
+
+    public string GetEnemyTag()
+    {
+        if (team == Team.GoodBean)
+        {
+            return Team.BadBean.ToString();
+        } else
+        {
+            return Team.GoodBean.ToString();
+        }
+    }
+
+    public string GetTeamTag()
+    {
+        return team.ToString();
     }
 }

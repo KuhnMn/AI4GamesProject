@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class FindEnemies : MonoBehaviour
 {
-    public string enemyTag;
-    public float visionRange;
+    public UnitStats unitStats;
     public List<(float, GameObject)> enemiesInRange;
     // Start is called before the first frame update
     void Start()
@@ -23,10 +22,10 @@ public class FindEnemies : MonoBehaviour
     void CheckForEnemies()
     {
         var possibleEnemies = new List<GameObject>();
-        Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position, visionRange);
+        Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position, unitStats.GetVisionRange());
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.tag == enemyTag)
+            if (hitCollider.tag == unitStats.GetEnemyTag())
             {
                 possibleEnemies.Add(hitCollider.gameObject);
             }
@@ -35,7 +34,7 @@ public class FindEnemies : MonoBehaviour
         foreach (var enemy in possibleEnemies)
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, enemy.transform.position - transform.position, out hit, visionRange))
+            if (Physics.Raycast(transform.position, enemy.transform.position - transform.position, out hit, unitStats.GetVisionRange()))
             {
                 if (hit.collider.gameObject == enemy)
                 {

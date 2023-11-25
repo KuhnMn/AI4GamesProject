@@ -4,23 +4,25 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class PatrolState : State
-{
-    public FindEnemies findEnemies;
-    public NavMeshAgent navMeshAgent;
-    public GameObject agent;
+{  
     public IdleState idleState;
     public ChaseState chaseState;
+
+    public GameObject agent;
 
     public bool startIdle;
     public bool startChase;
 
-    private Vector3 startPosition;
-    private Vector3 targetPosition;
+    public Vector3 startPosition;
+    public Vector3 targetPosition;
 
-    void start()
+    private FindEnemies findEnemies;
+    private NavMeshAgent navMeshAgent;
+
+    void Start()
     {
-        this.agent = GameObject.Find("BattleBean");
         this.navMeshAgent = agent.GetComponent<NavMeshAgent>();
+        this.findEnemies = agent.GetComponent<FindEnemies>();
     }
 
     public override State RunCurrentState()
