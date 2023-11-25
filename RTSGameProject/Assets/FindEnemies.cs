@@ -7,19 +7,26 @@ public class FindEnemies : MonoBehaviour
     public UnitStats unitStats;
     public List<(float, GameObject)> enemiesInRange;
     public int numberOfEnemiesInRange;
+    private float checkForEnemiesTimer;
     // Start is called before the first frame update
     void Start()
     {
         this.enemiesInRange = new List<(float Distance, GameObject Object)>();
-        InvokeRepeating("CheckForEnemies", 0f, 0.5f);
         numberOfEnemiesInRange = 0;
+        checkForEnemiesTimer = 0.5f;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        this.checkForEnemiesTimer += Time.deltaTime;
+        if (checkForEnemiesTimer >= 0.5f)
+        {
+            CheckForEnemies();
+            checkForEnemiesTimer = 0.0f;
+        }
     }
+
 
     void CheckForEnemies()
     {
