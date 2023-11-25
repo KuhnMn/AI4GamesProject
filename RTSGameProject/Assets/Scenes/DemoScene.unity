@@ -1200,83 +1200,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1481735982
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2342483766265555556, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
-      propertyPath: m_Name
-      value: BattleBean
-      objectReference: {fileID: 0}
-    - target: {fileID: 3858042434037810873, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
-      propertyPath: moveSpeed
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3858042434037810873, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
-      propertyPath: attackRange
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5429005253813449906, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
-      propertyPath: m_Radius
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5429005253813449906, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
-      propertyPath: avoidancePriority
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5429005253813449906, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
-      propertyPath: m_ObstacleAvoidanceType
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6876023419857118728, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
-      propertyPath: m_RootOrder
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 6876023419857118728, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 6.23
-      objectReference: {fileID: 0}
-    - target: {fileID: 6876023419857118728, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6876023419857118728, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 7.14
-      objectReference: {fileID: 0}
-    - target: {fileID: 6876023419857118728, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6876023419857118728, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6876023419857118728, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6876023419857118728, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6876023419857118728, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6876023419857118728, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6876023419857118728, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
 --- !u!1001 &1552255584
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1498,6 +1421,7 @@ GameObject:
   - component: {fileID: 1813563200}
   - component: {fileID: 1813563199}
   - component: {fileID: 1813563198}
+  - component: {fileID: 1813563197}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -1505,6 +1429,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 40
   m_IsActive: 1
+--- !u!114 &1813563197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813563196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9006c23c8660e8d4e9db4d74539b2270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beanPrefab: {fileID: 2342483766265555556, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
+  team: 1
+  spawningEnabled: 0
 --- !u!65 &1813563198
 BoxCollider:
   m_ObjectHideFlags: 0
