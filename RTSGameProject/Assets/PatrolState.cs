@@ -27,6 +27,8 @@ public class PatrolState : State
 
     public override State RunCurrentState()
     {
+        startChase = false;
+        startIdle = false;
         if (findEnemies.enemiesInRange.Count > 0)
         {
             startChase = true;

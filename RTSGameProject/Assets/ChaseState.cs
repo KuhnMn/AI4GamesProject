@@ -25,6 +25,8 @@ public class ChaseState : State
 
     public override State RunCurrentState()
     {
+        startAttack = false;
+        startPatrol = false;
         Debug.Log(navMeshAgent.stoppingDistance);
         this.navMeshAgent.stoppingDistance = this.unitStats.GetAttackRange();
         if (findEnemies.enemiesInRange.Count == 0)

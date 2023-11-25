@@ -6,11 +6,13 @@ public class FindEnemies : MonoBehaviour
 {
     public UnitStats unitStats;
     public List<(float, GameObject)> enemiesInRange;
+    public int numberOfEnemiesInRange;
     // Start is called before the first frame update
     void Start()
     {
         this.enemiesInRange = new List<(float Distance, GameObject Object)>();
-        InvokeRepeating("CheckForEnemies", 0f, 0.1f);
+        InvokeRepeating("CheckForEnemies", 0f, 0.5f);
+        numberOfEnemiesInRange = 0;
     }
 
     // Update is called once per frame
@@ -22,6 +24,7 @@ public class FindEnemies : MonoBehaviour
     void CheckForEnemies()
     {
         var possibleEnemies = new List<GameObject>();
+        var newEnemiesInRange = new List<(float, GameObject)>();
         Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position, unitStats.GetVisionRange());
         foreach (var hitCollider in hitColliders)
         {
@@ -31,6 +34,7 @@ public class FindEnemies : MonoBehaviour
             }
         }
 
+
         foreach (var enemy in possibleEnemies)
         {
             RaycastHit hit;
@@ -38,17 +42,14 @@ public class FindEnemies : MonoBehaviour
             {
                 if (hit.collider.gameObject == enemy)
                 {
-                    this.enemiesInRange.Add((Vector3.Distance(transform.position, enemy.transform.position), enemy));
+                    newEnemiesInRange.Add((Vector3.Distance(transform.position, enemy.transform.position), enemy));
                 }
             }   
         }
 
-        this.enemiesInRange.Sort((x, y) => x.Item1.CompareTo(y.Item1));
-        foreach (var enemy in this.enemiesInRange)
-        {
-            Debug.Log(enemy.Item1);
-            Debug.Log(enemy.Item2);
-        }
+        newEnemiesInRange.Sort((x, y) => x.Item1.CompareTo(y.Item1));
+        this.enemiesInRange = newEnemiesInRange;
+        this.numberOfEnemiesInRange = enemiesInRange.Count;
     }
 
 }
