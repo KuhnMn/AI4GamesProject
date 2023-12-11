@@ -7,8 +7,8 @@ public class CapturePoints : MonoBehaviour{
     public int ScoreBB = 50;
     public int ScoreGB = 50;
 
-    private int NbOfGB = 0;
-    private int NbOfBB = 0;
+    public int NbOfGB = 0;
+    public int NbOfBB = 0;
 
     private float Timer = 0;
     public int points;
@@ -32,29 +32,33 @@ public class CapturePoints : MonoBehaviour{
     void Update(){
         //Timer
         Timer += Time.deltaTime;
-
         if(ScoreBB==100){
             CapturedBy = "BadBean";
             rend.sharedMaterial = material[2];
         }else if(ScoreGB==100){
             CapturedBy = "GoodBean";
             rend.sharedMaterial = material[1];
-        }else{
-            if(Timer>1){
-                if(NbOfBB>NbOfGB){
+        }
+        
+        if(Timer>1){
+            if(NbOfBB>NbOfGB){
+                if(ScoreBB<100){
                     ScoreBB += points;
-                    ScoreGB -= points;
+                    ScoreGB -= points;   
                 }
-                if(NbOfBB<NbOfGB){
+            }
+            if(NbOfBB<NbOfGB){
+                if(ScoreGB<100){
                     ScoreBB -= points;
                     ScoreGB += points;
                 }
-                Timer = 0;
             }
-        }
+            Timer = 0;
+        }  
     }
 
     void OnTriggerEnter(Collider collider){
+        Debug.Log("Has collided");
         if (collider.gameObject.tag == "BadBean"){
             Debug.Log("BadBean has entered");
             NbOfBB++;
@@ -66,7 +70,6 @@ public class CapturePoints : MonoBehaviour{
     }
 
     void OnTriggerExit(Collider collider){
-        Debug.Log("Has collided");
         if (collider.gameObject.tag == "BadBean"){
             Debug.Log("BadBean has left");
             NbOfBB--;
