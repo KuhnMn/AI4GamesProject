@@ -42,11 +42,11 @@ public class CapturePoints : MonoBehaviour{
         //Timer
         Timer += Time.deltaTime;
         if(ScoreBB==100){
-            CapturedBy = "BadBean";
+            transform.gameObject.tag = CapturedBy = "BadBean";
             rend.sharedMaterial = material[2];
             Icon.color = Red;
         }else if(ScoreGB==100){
-            CapturedBy = "GoodBean";
+            transform.gameObject.tag = CapturedBy = "GoodBean";
             rend.sharedMaterial = material[1];
             Icon.color = Green;
         }
@@ -69,24 +69,19 @@ public class CapturePoints : MonoBehaviour{
     }
 
     void OnTriggerEnter(Collider collider){
-        Debug.Log("Has collided");
         if (collider.gameObject.tag == "BadBean"){
-            Debug.Log("BadBean has entered");
             NbOfBB++;
         }
         if (collider.gameObject.tag == "GoodBean"){
-            Debug.Log("GoodBean has entered");
             NbOfGB++;
         }
     }
 
     void OnTriggerExit(Collider collider){
         if (collider.gameObject.tag == "BadBean"){
-            Debug.Log("BadBean has left");
             NbOfBB--;
         }
         if (collider.gameObject.tag == "GoodBean"){
-            Debug.Log("GoodBean has left");
             NbOfGB--;
         }
     }
