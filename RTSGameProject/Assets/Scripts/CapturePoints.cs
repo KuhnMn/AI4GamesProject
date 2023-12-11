@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CapturePoints : MonoBehaviour{
     public string CapturedBy;
@@ -14,15 +15,23 @@ public class CapturePoints : MonoBehaviour{
     public int points;
 
     public Material[] material;
+    [SerializeField] private RawImage Icon;
+    private Color Green;
+    private Color Red;
+
     Renderer rend;
 
 
     // Start is called before the first frame update
     void Start(){
+        Green = new Color(0.2666667f,0.764706f,0.3686275f,1f);
+        Red = new Color(0.7960784f,0.1254902f,0.1372549f,255f);
+
         rend= GetComponent<Renderer>();
         rend.enabled = true;
         rend.sharedMaterial = material[0];
-        points = 5;
+
+        points = 50;
         ScoreBB = 50;
         ScoreGB = 50;
         CapturedBy = "Neutral";
@@ -35,20 +44,22 @@ public class CapturePoints : MonoBehaviour{
         if(ScoreBB==100){
             CapturedBy = "BadBean";
             rend.sharedMaterial = material[2];
+            Icon.color = Red;
         }else if(ScoreGB==100){
             CapturedBy = "GoodBean";
             rend.sharedMaterial = material[1];
+            Icon.color = Green;
         }
         
         if(Timer>1){
-            if(NbOfBB>NbOfGB){
-                if(ScoreBB<100){
+            if(ScoreBB<100){
+                if(NbOfBB>NbOfGB){
                     ScoreBB += points;
                     ScoreGB -= points;   
                 }
             }
-            if(NbOfBB<NbOfGB){
-                if(ScoreGB<100){
+            if(ScoreGB<100){
+                if(NbOfBB<NbOfGB){
                     ScoreBB -= points;
                     ScoreGB += points;
                 }
