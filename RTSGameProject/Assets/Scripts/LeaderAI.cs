@@ -55,6 +55,7 @@ public class LeaderAI : MonoBehaviour{
 
     void SpawnUnit(int UnitNumber,Vector3 position){
         GameObject Bean = Instantiate(UnitTypeList[UnitNumber], position, Quaternion.identity);
+        Bean.GetComponentsInChildren<IdleState>()[0].startPatrol = true;
         Army.Add(Bean);
     }
     
