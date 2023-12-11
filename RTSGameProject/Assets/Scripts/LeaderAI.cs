@@ -63,4 +63,9 @@ public class LeaderAI : MonoBehaviour{
         GameObject Formation = Instantiate(FormationPrefab, position, Quaternion.identity);
         Formations.Add(Formation);
     }
+
+
+    void SendFormationToPos(GameObject CapturePoint, GameObject Formation){
+        
+    }
 }
