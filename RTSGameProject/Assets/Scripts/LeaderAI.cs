@@ -64,8 +64,15 @@ public class LeaderAI : MonoBehaviour{
         Formations.Add(Formation);
     }
 
-
-    void SendFormationToPos(GameObject CapturePoint, GameObject Formation){
-        
+    void SendFormationToPos(GameObject Destination, GameObject Formation){
+        Formation.GetComponent<MoveTo>().goal = Destination.transform;
     }
+
+    void lostUnit(){
+
+    }
+    /*void LostFormation(GameObject Formation){
+        Formations.Remove(Formation);
+        Destroy(Formation);
+    }*/
 }

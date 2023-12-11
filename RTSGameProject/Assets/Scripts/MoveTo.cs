@@ -5,15 +5,14 @@ using UnityEngine.AI;
 
 public class MoveTo : MonoBehaviour
 {
-    public Transform goal;
     private NavMeshAgent agent;
+    public Transform goal;
     public float speed = 1.0f;
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
-        agent.destination = transform.position;
     }
 
     // Update is called once per frame

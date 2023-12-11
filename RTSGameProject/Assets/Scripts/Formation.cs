@@ -34,5 +34,9 @@ public class Formation : MonoBehaviour{
             }
             pos.x += _unitSpace;
         }
+
+        if(unitList.Count == 0){
+            Destroy(gameObject);
+        }
     }
 }
