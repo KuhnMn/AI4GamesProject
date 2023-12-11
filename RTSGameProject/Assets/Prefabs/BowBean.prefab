@@ -491,7 +491,7 @@ GameObject:
   - component: {fileID: 8158399000053564678}
   m_Layer: 0
   m_Name: BowBean
-  m_TagString: Untagged
+  m_TagString: GoodBean
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

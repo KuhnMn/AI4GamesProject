@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 1722606600558577543}
   m_Layer: 0
   m_Name: BattleBean
-  m_TagString: Untagged
+  m_TagString: GoodBean
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
