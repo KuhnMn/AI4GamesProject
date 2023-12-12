@@ -6,7 +6,7 @@ public class Formation : MonoBehaviour{
     
     
     public List<GameObject> unitList = new List<GameObject>();
-    public Transform ToFollow;
+    
 
     //public String status;
     //public bool fighting;
@@ -26,7 +26,7 @@ public class Formation : MonoBehaviour{
 
     // Update is called once per frame
     void Update(){
-        var offset = new Vector3(ToFollow.position.x - (_unitWidth * 0.5f * _unitSpace), 0, ToFollow.position.z - (_unitWidth * 0.5f * _unitSpace));
+        var offset = new Vector3(this.transform.position.x - (_unitWidth * 0.5f * _unitSpace), 0, this.transform.position.z - (_unitWidth * 0.5f * _unitSpace));
          
         int i = 0;
         float addedX = 0;
