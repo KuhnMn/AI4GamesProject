@@ -13,12 +13,12 @@ public class LeaderAI : MonoBehaviour{
 
     //public int HighPriority;
     //public int LowPriority;
-
+    public int FormationCap = 0;
     public List<GameObject> AvaibleUnits = new List<GameObject>();
     public List<GameObject> Formations = new List<GameObject>();
     public List<GameObject> CapturePointList = new List<GameObject>();
-    //public List<GameObject> SpawnPointList = new List<GameObject>();
-    
+    public List<GameObject> SpawnPointList = new List<GameObject>();
+
     public List<GameObject> UnitTypeList = new List<GameObject>();
     public GameObject FormationPrefab;
 
@@ -33,6 +33,7 @@ public class LeaderAI : MonoBehaviour{
         Mood = (int) Random.Range(40,60);
         TotalUnitPoints = 10;
         team = gameObject.tag;
+        FormationCap = 0;
     }
 
     // Update is called once per frame
@@ -41,14 +42,14 @@ public class LeaderAI : MonoBehaviour{
 
         //prototype spawn units
         if(TotalUnitPoints>10){
-            GameObject Bean = SpawnUnit(2,CapturePointList[1].transform.position);
+            GameObject Bean = SpawnUnit(2,SpawnPointList[0].transform.position);
             AvaibleUnits.Add(Bean);
-            Bean.AddComponent<MoveTo>().goal = CapturePointList[0].transform.position;
+            Bean.AddComponent<MoveTo>().goal = SpawnPointList[0].transform.position;
             TotalUnitPoints -= 10;
         }
         //prototype spawn formation
         if(AvaibleUnits.Count == 9){
-            GameObject Formation = SpawnFormation(CapturePointList[1].transform.position);
+            GameObject Formation = SpawnFormation(SpawnPointList[0].transform.position);
             Formations.Add(Formation);
             List<GameObject> AvaibleUnitsCopie = new List<GameObject>(AvaibleUnits);  // !!! NOT WELL IMPLEMMENTED !!!
             foreach(GameObject unit in AvaibleUnitsCopie){
@@ -57,7 +58,9 @@ public class LeaderAI : MonoBehaviour{
                 AvaibleUnits.Remove(unit);
             }
             AvaibleUnitsCopie.Clear();
-            Formation.AddComponent<MoveTo>().goal = CapturePointList[2].transform.position;
+            int ranNum = Random.Range(0, 3);
+            Formation.AddComponent<MoveTo>().goal = CapturePointList[Random.Range(0, 3)].transform.position;
+            Formation.GetComponent<MoveTo>().speed = 5;
         }
 
         //Add unitpoints per second

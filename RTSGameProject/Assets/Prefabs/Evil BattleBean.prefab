@@ -209,6 +209,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: BadBean
       objectReference: {fileID: 0}
+    - target: {fileID: 4011593103732256726, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
+      propertyPath: team
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6876023419857118728, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
       propertyPath: m_RootOrder
       value: 0

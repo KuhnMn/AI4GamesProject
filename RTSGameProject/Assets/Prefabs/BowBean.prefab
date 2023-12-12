@@ -488,6 +488,7 @@ GameObject:
   - component: {fileID: 8158399000053564683}
   - component: {fileID: 8158399000053564682}
   - component: {fileID: 8158399000053564678}
+  - component: {fileID: 809722160630782719}
   m_Layer: 0
   m_Name: BowBean
   m_TagString: GoodBean
@@ -600,6 +601,28 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &809722160630782719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8158399000053564680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2f2adc6fe33b754f9471a0e0b198191, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 15
+  attack: 6
+  defense: 1
+  maxHealth: 15
+  attackRange: 15
+  attackSpeed: 1
+  moveSpeed: 2
+  visionRange: 20
+  isDead: 0
+  team: 0
 --- !u!1 &8158399000369382422
 GameObject:
   m_ObjectHideFlags: 0

@@ -433,7 +433,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1522199865731790505, guid: 075e1fbf66959a0469f3bfb08cb94a92, type: 3}
       propertyPath: m_Name
-      value: BeanKnight Bad
+      value: Evil BeanKnight
       objectReference: {fileID: 0}
     - target: {fileID: 1522199865731790505, guid: 075e1fbf66959a0469f3bfb08cb94a92, type: 3}
       propertyPath: m_TagString
@@ -451,6 +451,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 09fa398296d1c0d4fb8dc7b34eaa1c5a, type: 2}
+    - target: {fileID: 9045696878119306773, guid: 075e1fbf66959a0469f3bfb08cb94a92, type: 3}
+      propertyPath: team
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 075e1fbf66959a0469f3bfb08cb94a92, type: 3}
 --- !u!4 &8531200777952608117 stripped

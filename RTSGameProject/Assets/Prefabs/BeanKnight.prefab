@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1522199865731790485}
   - component: {fileID: 1522199865731790484}
   - component: {fileID: 1522199865731790487}
+  - component: {fileID: 9045696878119306773}
   m_Layer: 0
   m_Name: BeanKnight
   m_TagString: GoodBean
@@ -68,6 +69,28 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &9045696878119306773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522199865731790505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2f2adc6fe33b754f9471a0e0b198191, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 30
+  attack: 4
+  defense: 5
+  maxHealth: 30
+  attackRange: 2
+  attackSpeed: 2
+  moveSpeed: 10
+  visionRange: 20
+  isDead: 0
+  team: 0
 --- !u!1 &1522199865802086526
 GameObject:
   m_ObjectHideFlags: 0

@@ -197,6 +197,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 809722160630782719, guid: 4c4dcd60a10e3404fad0e94d9560a391, type: 3}
+      propertyPath: team
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8158398999292813940, guid: 4c4dcd60a10e3404fad0e94d9560a391, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -247,7 +251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8158399000053564680, guid: 4c4dcd60a10e3404fad0e94d9560a391, type: 3}
       propertyPath: m_Name
-      value: BowBean Bad
+      value: Evil BowBean
       objectReference: {fileID: 0}
     - target: {fileID: 8158399000053564680, guid: 4c4dcd60a10e3404fad0e94d9560a391, type: 3}
       propertyPath: m_TagString

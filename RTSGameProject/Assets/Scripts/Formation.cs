@@ -6,8 +6,14 @@ public class Formation : MonoBehaviour{
     
     
     public List<GameObject> unitList = new List<GameObject>();
-    //public List<UnityEngine.AI.NavMeshAgent> unitList = new List<UnityEngine.AI.NavMeshAgent>();
     public Transform ToFollow;
+
+    //public String statis;
+    /*
+    Moving towards
+    engaged -> stop ToFollow
+    retreat
+    */
 
     private int _unitWidth;
     public float _unitSpace = 2.5f;
@@ -25,14 +31,12 @@ public class Formation : MonoBehaviour{
         float addedX = 0;
         var pos = offset;
 
-        //foreach(UnityEngine.AI.NavMeshAgent unit in unitList){
         foreach(GameObject unit in unitList){
             if(unit.GetComponent<MoveTo>() == null){
                 unit.AddComponent<MoveTo>().goal = pos;
             }
-            //unit.SetDestination(pos);
             unit.GetComponent<MoveTo>().goal = pos;
-            unit.GetComponent<MoveTo>().speed = 10;
+            unit.GetComponent<MoveTo>().speed = unit.GetComponent<UnitStats>().moveSpeed * 2;
             i++;
             addedX += _unitSpace;
             if(i >= _unitWidth){
