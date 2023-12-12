@@ -487,7 +487,6 @@ GameObject:
   - component: {fileID: 8158399000053564676}
   - component: {fileID: 8158399000053564683}
   - component: {fileID: 8158399000053564682}
-  - component: {fileID: 8158399000053564681}
   - component: {fileID: 8158399000053564678}
   m_Layer: 0
   m_Name: BowBean
@@ -579,20 +578,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8158399000053564681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8158399000053564680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7b6ec123beefb14eb22c58b327e6412, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goal: {fileID: 0}
-  speed: 1
 --- !u!195 &8158399000053564678
 NavMeshAgent:
   m_ObjectHideFlags: 0

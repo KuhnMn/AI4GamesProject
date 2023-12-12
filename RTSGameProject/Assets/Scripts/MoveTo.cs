@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class MoveTo : MonoBehaviour
 {
     private NavMeshAgent agent;
-    public Transform goal;
+    public Vector3 goal;
     public float speed = 1.0f;
     // Start is called before the first frame update
     void Start()
@@ -17,6 +17,6 @@ public class MoveTo : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        agent.SetDestination(goal.position);
+        agent.SetDestination(goal);
     }
 }

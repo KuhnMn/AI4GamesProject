@@ -38,6 +38,28 @@ public class LeaderAI : MonoBehaviour{
     void Update(){
         Timer += Time.deltaTime;
 
+        //prototype spawn units
+        if(TotalUnitPoints>10){
+            GameObject Bean = SpawnUnit(2,CapturePointList[1].transform.position);
+            Army.Add(Bean);
+            Bean.AddComponent<MoveTo>().goal = CapturePointList[0].transform.position;
+            TotalUnitPoints -= 10;
+        }
+        //prototype spawn formation
+        if(Army.Count == 9){
+            GameObject Formation = SpawnFormation(CapturePointList[1].transform.position);
+            Formations.Add(Formation);
+            List<GameObject> ArmyCopie = new List<GameObject>(Army);  // !!! NOT WELL IMPLEMMENTED !!!
+            foreach(GameObject unit in ArmyCopie){
+                Destroy(unit.GetComponent<MoveTo>());
+                Formation.GetComponent<Formation>().unitList.Add(unit);
+                Army.Remove(unit);
+            }
+            ArmyCopie.Clear();
+            Formation.AddComponent<MoveTo>().goal = CapturePointList[2].transform.position;
+        }
+
+        //Add unitpoints per second
         if(Timer>1){
             UnitPoints = 4;
             foreach(GameObject CpPoints in CapturePointList){
@@ -53,24 +75,24 @@ public class LeaderAI : MonoBehaviour{
         }
     }
 
-    void SpawnUnit(int UnitNumber,Vector3 position){
+    GameObject SpawnUnit(int UnitNumber,Vector3 position){
         GameObject Bean = Instantiate(UnitTypeList[UnitNumber], position, Quaternion.identity);
-        Bean.GetComponentsInChildren<IdleState>()[0].startPatrol = true;
-        Army.Add(Bean);
+        return Bean;
     }
     
-    void SpawnFormation(Vector3 position){
+    GameObject SpawnFormation(Vector3 position){
         GameObject Formation = Instantiate(FormationPrefab, position, Quaternion.identity);
-        Formations.Add(Formation);
+        return Formation;
     }
 
     void SendFormationToPos(GameObject Destination, GameObject Formation){
-        Formation.GetComponent<MoveTo>().goal = Destination.transform;
+        Formation.GetComponent<MoveTo>().goal = Destination.transform.position;
     }
 
     void lostUnit(){
 
     }
+
     /*void LostFormation(GameObject Formation){
         Formations.Remove(Formation);
         Destroy(Formation);
