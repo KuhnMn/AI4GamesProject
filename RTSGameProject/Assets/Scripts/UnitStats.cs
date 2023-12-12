@@ -23,12 +23,13 @@ public class UnitStats : MonoBehaviour
 
     void Start()
     {
-        UnityEngine.AI.NavMeshAgent navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        /*UnityEngine.AI.NavMeshAgent navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         if (navMeshAgent != null)
         {
             navMeshAgent.speed = moveSpeed;
         }
         gameObject.tag = team.ToString();
+        
         if (team == Team.GoodBean)
         {
             gameObject.GetComponent<Renderer>().material = Resources.Load<Material>("Materials/GoodBeanMaterial");
@@ -38,7 +39,7 @@ public class UnitStats : MonoBehaviour
         {
             gameObject.GetComponent<Renderer>().material = Resources.Load<Material>("Materials/BadBeanMaterial");
             gameObject.layer = 8;
-        }
+        }*/
         isDead = false;
     }
 

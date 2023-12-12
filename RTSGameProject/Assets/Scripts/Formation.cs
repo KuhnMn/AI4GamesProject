@@ -8,7 +8,8 @@ public class Formation : MonoBehaviour{
     public List<GameObject> unitList = new List<GameObject>();
     public Transform ToFollow;
 
-    //public String statis;
+    //public String status;
+    //public bool fighting;
     /*
     Moving towards
     engaged -> stop ToFollow
@@ -46,6 +47,14 @@ public class Formation : MonoBehaviour{
             }
             pos.x += _unitSpace;
         }
+/*
+        if(fighting == true){
+            foreach(GameObject unit in unitList){
+
+            }
+        }*/
+
+
 
         if(unitList.Count == 0){
             Destroy(gameObject);
