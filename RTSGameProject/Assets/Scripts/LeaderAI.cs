@@ -14,12 +14,13 @@ public class LeaderAI : MonoBehaviour{
     //public int HighPriority;
     //public int LowPriority;
 
-    public List<GameObject> Army = new List<GameObject>();
+    public List<GameObject> AvaibleUnits = new List<GameObject>();
     public List<GameObject> Formations = new List<GameObject>();
-    public GameObject FormationPrefab;
     public List<GameObject> CapturePointList = new List<GameObject>();
     //public List<GameObject> SpawnPointList = new List<GameObject>();
+    
     public List<GameObject> UnitTypeList = new List<GameObject>();
+    public GameObject FormationPrefab;
 
     public int TotalUnitPoints;
     public int UnitPoints;
@@ -41,21 +42,21 @@ public class LeaderAI : MonoBehaviour{
         //prototype spawn units
         if(TotalUnitPoints>10){
             GameObject Bean = SpawnUnit(2,CapturePointList[1].transform.position);
-            Army.Add(Bean);
+            AvaibleUnits.Add(Bean);
             Bean.AddComponent<MoveTo>().goal = CapturePointList[0].transform.position;
             TotalUnitPoints -= 10;
         }
         //prototype spawn formation
-        if(Army.Count == 9){
+        if(AvaibleUnits.Count == 9){
             GameObject Formation = SpawnFormation(CapturePointList[1].transform.position);
             Formations.Add(Formation);
-            List<GameObject> ArmyCopie = new List<GameObject>(Army);  // !!! NOT WELL IMPLEMMENTED !!!
-            foreach(GameObject unit in ArmyCopie){
+            List<GameObject> AvaibleUnitsCopie = new List<GameObject>(AvaibleUnits);  // !!! NOT WELL IMPLEMMENTED !!!
+            foreach(GameObject unit in AvaibleUnitsCopie){
                 Destroy(unit.GetComponent<MoveTo>());
                 Formation.GetComponent<Formation>().unitList.Add(unit);
-                Army.Remove(unit);
+                AvaibleUnits.Remove(unit);
             }
-            ArmyCopie.Clear();
+            AvaibleUnitsCopie.Clear();
             Formation.AddComponent<MoveTo>().goal = CapturePointList[2].transform.position;
         }
 
