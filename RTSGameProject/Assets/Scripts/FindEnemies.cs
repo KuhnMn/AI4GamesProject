@@ -4,52 +4,59 @@ using UnityEngine;
 
 public class FindEnemies : MonoBehaviour
 {
-    public string enemyTag;
-    public float visionRange;
+    public UnitStats unitStats;
     public List<(float, GameObject)> enemiesInRange;
+    public int numberOfEnemiesInRange;
+    private float checkForEnemiesTimer;
     // Start is called before the first frame update
     void Start()
     {
         this.enemiesInRange = new List<(float Distance, GameObject Object)>();
-        InvokeRepeating("CheckForEnemies", 0f, 0.1f);
+        numberOfEnemiesInRange = 0;
+        checkForEnemiesTimer = 0.5f;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        this.checkForEnemiesTimer += Time.deltaTime;
+        if (checkForEnemiesTimer >= 0.5f)
+        {
+            CheckForEnemies();
+            checkForEnemiesTimer = 0.0f;
+        }
     }
+
 
     void CheckForEnemies()
     {
         var possibleEnemies = new List<GameObject>();
-        Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position, visionRange);
+        var newEnemiesInRange = new List<(float, GameObject)>();
+        Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position, unitStats.GetVisionRange());
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.tag == enemyTag)
+            if (hitCollider.tag == unitStats.GetEnemyTag())
             {
                 possibleEnemies.Add(hitCollider.gameObject);
             }
         }
 
+
         foreach (var enemy in possibleEnemies)
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, enemy.transform.position - transform.position, out hit, visionRange))
+            if (Physics.Raycast(transform.position, enemy.transform.position - transform.position, out hit, unitStats.GetVisionRange()))
             {
                 if (hit.collider.gameObject == enemy)
                 {
-                    this.enemiesInRange.Add((Vector3.Distance(transform.position, enemy.transform.position), enemy));
+                    newEnemiesInRange.Add((Vector3.Distance(transform.position, enemy.transform.position), enemy));
                 }
             }   
         }
 
-        this.enemiesInRange.Sort((x, y) => x.Item1.CompareTo(y.Item1));
-        foreach (var enemy in this.enemiesInRange)
-        {
-            Debug.Log(enemy.Item1);
-            Debug.Log(enemy.Item2);
-        }
+        newEnemiesInRange.Sort((x, y) => x.Item1.CompareTo(y.Item1));
+        this.enemiesInRange = newEnemiesInRange;
+        this.numberOfEnemiesInRange = enemiesInRange.Count;
     }
 
 }
