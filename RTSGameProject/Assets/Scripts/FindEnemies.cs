@@ -41,15 +41,15 @@ public class FindEnemies : MonoBehaviour
             }
         }
 
-
         foreach (var enemy in possibleEnemies)
         {
             RaycastHit hit;
             if (Physics.Raycast(transform.position, enemy.transform.position - transform.position, out hit, unitStats.GetVisionRange()))
             {
+                Debug.Log(hit.collider.gameObject);
                 if (hit.collider.gameObject == enemy)
                 {
-                    newEnemiesInRange.Add((Vector3.Distance(transform.position, enemy.transform.position), enemy));
+                    newEnemiesInRange.Add((calulate2DDistance(transform.position, enemy.transform.position), enemy));
                 }
             }   
         }
@@ -57,6 +57,11 @@ public class FindEnemies : MonoBehaviour
         newEnemiesInRange.Sort((x, y) => x.Item1.CompareTo(y.Item1));
         this.enemiesInRange = newEnemiesInRange;
         this.numberOfEnemiesInRange = enemiesInRange.Count;
+    }
+
+    private float calulate2DDistance(Vector3 a, Vector3 b)
+    {
+        return Mathf.Sqrt(Mathf.Pow(a.x - b.x, 2) + Mathf.Pow(a.z - b.z, 2));
     }
 
 }

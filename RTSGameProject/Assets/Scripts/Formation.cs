@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Formation : MonoBehaviour{
     
-    
+    public Boolean isBroken = false;
     public List<GameObject> unitList = new List<GameObject>();
     
 
@@ -72,5 +73,11 @@ public class Formation : MonoBehaviour{
         if(unitList.Count == 0){
             Destroy(gameObject);
         }
+    }
+
+    public void breakFormation(Vector3 interestPosition)
+    {
+        isBroken = true;
+        return;
     }
 }

@@ -381,7 +381,7 @@ MonoBehaviour:
   attack: 3
   defense: 2
   maxHealth: 20
-  attackRange: 1
+  attackRange: 3
   attackSpeed: 5
   moveSpeed: 2
   visionRange: 20
@@ -846,10 +846,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   findEnemies: {fileID: 4416636043349119216}
-  navMeshAgent: {fileID: 8271597988142338202}
   agent: {fileID: 2342483766265555556}
   idleState: {fileID: 2783976250164982734}
   chaseState: {fileID: 3160203235350939434}
+  patrolRadius: 30
+  patrolTimeout: 10
   startIdle: 0
   startChase: 0
 --- !u!1 &6349475226250090777
