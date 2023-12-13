@@ -26,11 +26,26 @@ public class Formation : MonoBehaviour{
 
     // Update is called once per frame
     void Update(){
-        var offset = new Vector3(this.transform.position.x - (_unitWidth * 0.5f * _unitSpace), 0, this.transform.position.z - (_unitWidth * 0.5f * _unitSpace));
-         
+        var offset = new Vector3((this.transform.position.x - (_unitWidth * _unitSpace) * 0.5f), 0, (this.transform.position.z - (_unitWidth * _unitSpace) * 0.5f));
+        //var length = Mathf.Sqrt(Mathf.Pow(this.transform.position.x - offset.x,2) + Mathf.Pow(this.transform.position.y - offset.y, 2));
+        //var pos = new Vector3((offset.x + Mathf.Cos(this.transform.rotation.y) * length), 0, (offset.z + Mathf.Sin(this.transform.rotation.y * length)));
+        var pos = offset;
+        /*
+        Debug.Log("Original");
+        Debug.Log(offset.x);
+        Debug.Log(offset.z);
+        Debug.Log("Angle");
+        Debug.Log(this.transform.rotation.y);
+        Debug.Log(Mathf.Cos(this.transform.rotation.y));
+        Debug.Log(Mathf.Sin(this.transform.rotation.y));
+        Debug.Log("New");
+        Debug.Log(offset.x + Mathf.Cos(this.transform.rotation.y));
+        Debug.Log(offset.z + Mathf.Sin(this.transform.rotation.y));
+        Debug.Log("Over");*/
+        
         int i = 0;
         float addedX = 0;
-        var pos = offset;
+        //var pos = offset;
 
         foreach(GameObject unit in unitList){
             if(unit.GetComponent<MoveTo>() == null){
@@ -53,8 +68,6 @@ public class Formation : MonoBehaviour{
 
             }
         }*/
-
-
 
         if(unitList.Count == 0){
             Destroy(gameObject);

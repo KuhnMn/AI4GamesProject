@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class UnitStats : MonoBehaviour
 {
     [SerializeField] private Image HealthBar;
+    public GameObject InFormation;
+    
 
     public int health;
     public int attack;
@@ -26,44 +28,12 @@ public class UnitStats : MonoBehaviour
 
     void Start()
     {
-        /*UnityEngine.AI.NavMeshAgent navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        if (navMeshAgent != null)
-        {
-            navMeshAgent.speed = moveSpeed;
-        }
-        gameObject.tag = team.ToString();
-        
-        if (team == Team.GoodBean)
-        {
-            gameObject.GetComponent<Renderer>().material = Resources.Load<Material>("Materials/GoodBeanMaterial");
-            gameObject.layer = 7;
-        }
-        else
-        {
-            gameObject.GetComponent<Renderer>().material = Resources.Load<Material>("Materials/BadBeanMaterial");
-            gameObject.layer = 8;
-        }*/
         isDead = false;
     }
 
     void Update(){
         UpdateHeathBar();
     }
-
-    public void SetTeam(Team team)
-    {
-        this.team = team;
-        gameObject.tag = team.ToString();
-        if (team == Team.GoodBean)
-        {
-            gameObject.GetComponent<Renderer>().material = Resources.Load<Material>("Materials/GoodBeanMaterial");
-        }
-        else
-        {
-            gameObject.GetComponent<Renderer>().material = Resources.Load<Material>("Materials/BadBeanMaterial");
-        }
-    }
-
 
     public void TakeDamage(int enemyAttack)
     {
@@ -93,7 +63,6 @@ public class UnitStats : MonoBehaviour
     {
         health = maxHealth;
     }
-
     public int GetHealth()
     {
         return health;
