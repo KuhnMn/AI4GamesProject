@@ -25,6 +25,7 @@ public class LeaderAI : MonoBehaviour{
     public int TotalUnitPoints;
     public int UnitPoints;
     [SerializeField] private Text UnitPointsText;
+    [SerializeField] private Image MoodBar;
     [SerializeField] private Text MoodText;
 
 
@@ -39,6 +40,8 @@ public class LeaderAI : MonoBehaviour{
     // Update is called once per frame
     void Update(){
         Timer += Time.deltaTime;
+        
+        MoodBar.fillAmount = 1.0f - ((Mood * 1.0f) / (100.0f));
 
         if(TotalUnitPoints>100){
             SendFormationToPos(SpawnInfantryDivision(SpawnPointList[0]), CapturePointList[Random.Range(0, 3)].transform.position);
