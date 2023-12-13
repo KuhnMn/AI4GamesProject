@@ -593,12 +593,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e48cc31483661654499e1f2608b29842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitList:
-  - {fileID: 1438026336}
-  - {fileID: 1504633320}
-  - {fileID: 574827280}
-  - {fileID: 1087111153}
-  unitSelected: []
 --- !u!1 &139310531 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2342483766265555556, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
@@ -2412,7 +2406,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08be874cd4da3714cbedba46b557b3fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxVisual: {fileID: 0}
 --- !u!1001 &1039098597
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2914,7 +2907,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5839556781178014519, guid: 8bbd4a41ec5efea459ddbb2a247f7bef, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 87.25
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5839556781178014519, guid: 8bbd4a41ec5efea459ddbb2a247f7bef, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4192,12 +4185,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f208bb852e31725428c6adfe801e03ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickable:
-    serializedVersion: 2
-    m_Bits: 256
-  ground:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!1001 &1966646762
 PrefabInstance:
   m_ObjectHideFlags: 0

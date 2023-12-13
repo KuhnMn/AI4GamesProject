@@ -10,8 +10,10 @@ public class PatrolState : State
     public GameObject agent;
     public IdleState idleState;
     public ChaseState chaseState;
+    public FormationState formationState;
     public float patrolRadius = 15.0f;
     public float patrolTimeout = 10.0f;
+    public bool returnToFormation;
 
     public bool startIdle;
     public bool startChase;
@@ -23,26 +25,19 @@ public class PatrolState : State
     void Start()
     {
         this.navMeshAgent = agent.GetComponent<NavMeshAgent>();
+        this.returnToFormation = false;
     }
 
     public override State RunCurrentState()
     {
         timer += Time.deltaTime;
+        if (returnToFormation)
+        {
+            returnToFormation = false;
+            return formationState;
+        }
         if (findEnemies.enemiesInRange.Count > 0)
         {
-            startChase = true;
-        }
-        if (Input.GetKeyDown("i"))
-        {
-            startIdle = true;
-        }
-        if (startIdle)
-        {
-            startIdle = false;
-            return idleState;
-        } else if (startChase)
-        {
-            startChase = false;
             return chaseState;
         }
         else

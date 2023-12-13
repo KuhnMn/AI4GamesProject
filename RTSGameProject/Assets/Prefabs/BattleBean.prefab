@@ -413,7 +413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ad63b645495ef408c3cd06b3e9fa39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: {fileID: 2783976250164982734}
+  currentState: {fileID: 5889991927517544220}
 --- !u!1 &2836286627749890759
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,6 +707,54 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &3748309667336425333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7693192790697628666}
+  - component: {fileID: 5823681976572215161}
+  m_Layer: 0
+  m_Name: ScoutState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7693192790697628666
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3748309667336425333}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 680399545114074964}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5823681976572215161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3748309667336425333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c414c8ab2bd7ba44c92dc276f0da3c08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseState: {fileID: 3160203235350939434}
+  patrolState: {fileID: 600537946957357980}
+  scoutLocation: {x: 0, y: 0, z: 0}
+  scoutingRadius: 15
+  agent: {fileID: 2342483766265555556}
 --- !u!1 &4938397459261369478
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,8 +897,10 @@ MonoBehaviour:
   agent: {fileID: 2342483766265555556}
   idleState: {fileID: 2783976250164982734}
   chaseState: {fileID: 3160203235350939434}
+  formationState: {fileID: 5889991927517544220}
   patrolRadius: 30
   patrolTimeout: 10
+  returnToFormation: 0
   startIdle: 0
   startChase: 0
 --- !u!1 &6349475226250090777
@@ -976,6 +1026,56 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &6922500368223390047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5154331883217671584}
+  - component: {fileID: 5889991927517544220}
+  m_Layer: 0
+  m_Name: FormationState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5154331883217671584
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6922500368223390047}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 680399545114074964}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5889991927517544220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6922500368223390047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b20b920d2a82274a92f6fad6bebcf7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseState: {fileID: 3160203235350939434}
+  scoutState: {fileID: 5823681976572215161}
+  agent: {fileID: 2342483766265555556}
+  formationGoal: {x: 0, y: 0, z: 0}
+  speed: 0
+  forceFormation: 0
+  foundEnemy: {x: 0, y: 0, z: 0}
 --- !u!1 &6922512251296840511
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,6 +1302,8 @@ Transform:
   - {fileID: 5049815300793986061}
   - {fileID: 7991267549306217724}
   - {fileID: 7859724269570558027}
+  - {fileID: 5154331883217671584}
+  - {fileID: 7693192790697628666}
   m_Father: {fileID: 6876023419857118728}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
