@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UnitStats : MonoBehaviour
 {
+    [SerializeField] private Image HealthBar;
+
     public int health;
     public int attack;
     public int defense;
@@ -41,6 +44,10 @@ public class UnitStats : MonoBehaviour
             gameObject.layer = 8;
         }*/
         isDead = false;
+    }
+
+    void Update(){
+        UpdateHeathBar();
     }
 
     public void SetTeam(Team team)
@@ -136,5 +143,9 @@ public class UnitStats : MonoBehaviour
     public string GetTeamTag()
     {
         return team.ToString();
+    }
+
+    public void UpdateHeathBar(){
+        HealthBar.fillAmount = 1.0f - ((health * 1.0f) / (maxHealth * 1.0f));
     }
 }

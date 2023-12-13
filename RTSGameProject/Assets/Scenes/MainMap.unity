@@ -4463,6 +4463,73 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8699237071829516887, guid: a323598549d4b1f4bbdaa30b3785013b, type: 3}
   m_PrefabInstance: {fileID: 1151324092}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1155593611
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1155593613}
+  - component: {fileID: 1155593612}
+  m_Layer: 0
+  m_Name: Leader (1)
+  m_TagString: BadBean
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1155593612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155593611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb36be083f81474ba0dcfc10df85c56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 
+  Mood: 0
+  Priority: 0
+  FormationCap: 0
+  AvaibleUnits: []
+  Formations: []
+  CapturePointList:
+  - {fileID: 965616770}
+  - {fileID: 573074266}
+  - {fileID: 1942231611}
+  SpawnPointList:
+  - {fileID: 140502692}
+  - {fileID: 965616770}
+  - {fileID: 573074266}
+  - {fileID: 1942231611}
+  UnitTypeList:
+  - {fileID: 9160758676041660141, guid: 576c516703651dc4daa4c625193fdf10, type: 3}
+  - {fileID: 343108030132121130, guid: 7ef20054a7fe1b84ab0dbe50bcbe2084, type: 3}
+  - {fileID: 8531200778722258643, guid: 3d870045a7148ce40bd20b0b91d25e3d, type: 3}
+  FormationPrefab: {fileID: 8585258041267694297, guid: 8bbd4a41ec5efea459ddbb2a247f7bef, type: 3}
+  TotalUnitPoints: 0
+  UnitPoints: 0
+  UnitPointsText: {fileID: 1774191200}
+  MoodText: {fileID: 2127876454}
+--- !u!4 &1155593613
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155593611}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1155996157
 GameObject:
   m_ObjectHideFlags: 0
@@ -5230,6 +5297,7 @@ MonoBehaviour:
   team: 
   Mood: 0
   Priority: 0
+  FormationCap: 0
   AvaibleUnits: []
   Formations: []
   CapturePointList:
