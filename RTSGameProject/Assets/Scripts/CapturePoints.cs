@@ -31,7 +31,7 @@ public class CapturePoints : MonoBehaviour{
         rend.enabled = true;
         rend.sharedMaterial = material[0];
 
-        points = 50;
+        points = 5;
         ScoreBB = 50;
         ScoreGB = 50;
         CapturedBy = "Neutral";

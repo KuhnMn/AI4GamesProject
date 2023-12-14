@@ -38,11 +38,11 @@ public class LeaderAI : MonoBehaviour{
         team = gameObject.tag;
         FormationCap = 20;
         switch(Random.Range(0,4)){
-            case 0: ArmyChoice = "Balanced"; break;
             case 1: ArmyChoice = "Infantry"; break;
             case 2: ArmyChoice = "Archer"; break;
             case 3: ArmyChoice = "Cavalry"; break;
             case 4: ArmyChoice = "Militia"; break;
+            default: ArmyChoice = "Balanced"; break;
         }
     }
 
@@ -52,6 +52,7 @@ public class LeaderAI : MonoBehaviour{
         
         //Mood handler
         MoodHandler();
+        CheckAvaibleSpawnPoint();
 
 
         if(TotalUnitPoints>100){
@@ -61,6 +62,18 @@ public class LeaderAI : MonoBehaviour{
             SendFormationToPos(SpawnMilitiaDivision(SpawnPointList[0]), CapturePointList[Random.Range(0, 3)].transform.position);
             TotalUnitPoints -= 100;
         }
+
+        /*
+        1: Check Score
+        2: Check Capture Points
+        3: Checks Army
+        4.1: Recrutement
+        4.2: Launch Assault
+        5: 
+        */
+
+        //2
+
 
         //Add unitpoints per second
         if(Timer>1){
@@ -193,10 +206,6 @@ public class LeaderAI : MonoBehaviour{
         }
     }
 
-    void Strategie(){
-
-
-    }
 
     List<int> GetArmyNumbers(){
         int nbInf = 0;
@@ -219,8 +228,21 @@ public class LeaderAI : MonoBehaviour{
         return formationList;
     }
 
-    //Recutement
+    void CheckAvaibleSpawnPoint(){
+        foreach(GameObject point in CapturePointList){
+            if(point.tag == this.tag && !SpawnPointList.Contains(point)){
+                SpawnPointList.Add(point);
+            }
+            if(point.tag != this.tag && SpawnPointList.Contains(point)){
+                SpawnPointList.Remove(point);
+            }
+        }
+    }
 
+    //Recutement
+    void Recutement(){
+
+    }
 
     //Tactics
     
