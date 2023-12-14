@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class GameInfo : MonoBehaviour{
     private float Timer = 0;
+    [SerializeField] private Text ClockText;
+    private float clock;
+    public int seconds;
+    public int minutes;
+    public int hours;
 
     public int GBScore;
     public int BBScore;
@@ -24,6 +29,7 @@ public class GameInfo : MonoBehaviour{
     // Update is called once per frame
     void Update(){
         Timer += Time.deltaTime;
+        clock += Time.deltaTime;
 
         if(GBScore >= 1000 || BBScore >= 1000){
             Debug.Log("VICTORY");
@@ -48,5 +54,17 @@ public class GameInfo : MonoBehaviour{
 
             Timer = 0;
         }
+
+        seconds = Mathf.RoundToInt(clock);
+        if(seconds > 60){
+            minutes++;
+            seconds = 0;
+            clock = 0;
+        }
+        if(minutes > 60){
+            hours++;
+            minutes = 0;
+        }
+        ClockText.text = minutes.ToString() + ":" + seconds.ToString();
     }
 }
