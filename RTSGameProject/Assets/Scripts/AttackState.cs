@@ -41,10 +41,16 @@ public class AttackState : State
         }
         else
         {
+            navMeshAgent.SetDestination(agent.transform.position);
             LookAtTarget();
             exclamationMark.SetActive(true);
-            if (attackTimer >= 1.0f)
+            if (attackTimer >= 1.0f/this.unitStats.attackSpeed)
             {
+                if (agent.GetComponent<RangedAttack>() != null)
+                {
+                    Debug.Log("Shoots");
+                    agent.GetComponent<RangedAttack>().Attack(findEnemies.enemiesInRange[0].Item2);
+                }
                 this.findEnemies.enemiesInRange[0].Item2.SendMessage("TakeDamage", this.unitStats.GetAttack());
                 attackTimer = 0.0f;
             }

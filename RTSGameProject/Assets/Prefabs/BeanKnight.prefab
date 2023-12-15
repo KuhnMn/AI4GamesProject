@@ -190,12 +190,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 5331833803323252117}
   InFormation: {fileID: 0}
+  DeathParticlePrefab: {fileID: 8728408204387302874, guid: 28545a00787045f4aa0852c9357a77e0, type: 3}
   health: 30
   attack: 4
   defense: 5
   maxHealth: 30
   attackRange: 3
-  attackSpeed: 2
+  attackSpeed: 1
   moveSpeed: 4
   visionRange: 20
   isDead: 0

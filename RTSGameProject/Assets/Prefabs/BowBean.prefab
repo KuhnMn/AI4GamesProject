@@ -1334,6 +1334,7 @@ GameObject:
   - component: {fileID: 809722160630782719}
   - component: {fileID: 1067854967144738602}
   - component: {fileID: 666815093445461426}
+  - component: {fileID: 768636502824160}
   m_Layer: 0
   m_Name: BowBean
   m_TagString: GoodBean
@@ -1463,6 +1464,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 1100778308230467978}
   InFormation: {fileID: 0}
+  DeathParticlePrefab: {fileID: 8728408204387302874, guid: 28545a00787045f4aa0852c9357a77e0, type: 3}
   health: 15
   attack: 6
   defense: 1
@@ -1500,6 +1502,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: {fileID: 349212212698279980}
+--- !u!114 &768636502824160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8158399000053564680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fc9b5b4581b1fb4cb9e8b7ce8fb979d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrowPrefab: {fileID: 2342013325755799957, guid: d145a9ae2a4c03a48ae564d3b582ff72, type: 3}
 --- !u!1 &8158399000369382422
 GameObject:
   m_ObjectHideFlags: 0
