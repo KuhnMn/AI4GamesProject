@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class CapturePoints : MonoBehaviour{
     public string CapturedBy;
+    public bool IsContested;
     public int ScoreBB = 50;
     public int ScoreGB = 50;
 
@@ -30,6 +31,7 @@ public class CapturePoints : MonoBehaviour{
         rend= GetComponent<Renderer>();
         rend.enabled = true;
         rend.sharedMaterial = material[0];
+        IsContested = true;
 
         points = 5;
         ScoreBB = 50;
@@ -49,6 +51,12 @@ public class CapturePoints : MonoBehaviour{
             transform.gameObject.tag = CapturedBy = "GoodBean";
             rend.sharedMaterial = material[1];
             Icon.color = Green;
+        }
+
+        if(ScoreBB !=0 || ScoreBB !=100){
+            IsContested = true;
+        }else{
+            IsContested = false;
         }
         
         if(Timer>1){

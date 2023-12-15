@@ -10,16 +10,16 @@ public class LeaderAI : MonoBehaviour{
     public string team;
     public int Mood;
     private bool MoodHasTrigger;
-    public string ArmyChoice;
+    //public string ArmyChoice;
     public string Attitude;
+    private bool DecHasTrigger;
 
-    public int Priority;
 
     public int FormationCap = 0;
     public List<GameObject> AvaibleUnits = new List<GameObject>();
     public List<GameObject> Formations = new List<GameObject>();
-    public List<GameObject> Army = new List<GameObject>();
-    public List<List<GameObject>> Armys = new List<List<GameObject>>();
+    //public List<GameObject> Army = new List<GameObject>();
+    //public List<List<GameObject>> Armys = new List<List<GameObject>>();
     public List<GameObject> CapturePointList = new List<GameObject>();
     public List<GameObject> SpawnPointList = new List<GameObject>();
 
@@ -33,24 +33,30 @@ public class LeaderAI : MonoBehaviour{
     [SerializeField] private Text MoodText;
 
     //Memory
-    public int LastAction;
+    //public int LastAction;
     public GameObject Objective;
-    public List<GameObject> CPDefended = new List<GameObject>();
+    //public List<GameObject> CPDefended = new List<GameObject>();
+    public GameObject Reinforcing;
+    public bool IsAttacking;
 
 
     // Start is called before the first frame update
     void Start(){
+        MoodHasTrigger = DecHasTrigger = true;
         Mood = (int) Random.Range(40,60);
+        IsAttacking = true;
         TotalUnitPoints = 100;
         team = gameObject.tag;
         FormationCap = 20;
-        switch(Random.Range(0,4)){
+        Reinforcing = SpawnPointList[0];
+        Objective = CapturePointList[0];
+        /*switch(Random.Range(0,4)){
             case 1: ArmyChoice = "Infantry"; break;
             case 2: ArmyChoice = "Archer"; break;
             case 3: ArmyChoice = "Cavalry"; break;
             case 4: ArmyChoice = "Militia"; break;
             default: ArmyChoice = "Balanced"; break;
-        }
+        }*/
     }
 
     // Update is called once per frame
@@ -60,34 +66,31 @@ public class LeaderAI : MonoBehaviour{
         //Mood handler
         MoodHandler();
         CheckAvaibleSpawnPoint();
-        Recrutement();
-        
+        RecruteMilitia();
+        if(TotalUnitPoints>120){
+            RecruteArmy();
+        }
+        /*
         if(TotalUnitPoints>100){
             //SendFormationToPos(SpawnInfantryDivision(SpawnPointList[0]), CapturePointList[Random.Range(0, 3)].transform.position);
             //SendFormationToPos(SpawnArcherDivision(SpawnPointList[0]), CapturePointList[Random.Range(0, 3)].transform.position);
             SendFormationToPos(SpawnCavalryDivision(SpawnPointList[0]), CapturePointList[Random.Range(0, 3)].transform.position);
             //SendFormationToPos(SpawnMilitiaDivision(SpawnPointList[0]), CapturePointList[Random.Range(0, 3)].transform.position);
             TotalUnitPoints -= 100;
+        }*/
+        
+
+        if(GameInfo.GetComponent<GameInfo>().seconds!=0 && GameInfo.GetComponent<GameInfo>().seconds % 20 == 0 && DecHasTrigger){
+            ChangeObjective();
+            MakeDecision();
+            DecHasTrigger = false;
+        }else if(GameInfo.GetComponent<GameInfo>().seconds % 10 != 0){
+            DecHasTrigger = true;
         }
 
-        /*
-        1: Check Score
-        2: Check Capture Points
-        CheckAvaibleSpawnPoint();
-        Check If CP has Militia
-
-
-        3: Checks Army
-
-        4.1: Recrutement missing units
-
-        4.2: Launch Assault
-
-        5: 
-        */
-
-        //2
-
+        if(IsAttacking){
+            SendAllFormationToObjective();
+        }
 
         //Add unitpoints per second
         if(Timer>1){
@@ -181,6 +184,20 @@ public class LeaderAI : MonoBehaviour{
         }
     }
 
+    void SendAllFormationToObjective(){
+        foreach(GameObject form in Formations){
+            if(form.GetComponent<Formation>().FormationName != "Militia"){
+                foreach(GameObject Formation in Formations){
+                    if(form.GetComponent<MoveTo>().goal == null){
+                        form.AddComponent<MoveTo>().goal = Objective.transform.position;
+                    }else{
+                        form.GetComponent<MoveTo>().goal = Objective.transform.position;
+                    }
+                }
+            }
+        }
+    }
+
     private GameObject SpawnInfantryDivision(GameObject location){
         return SpawnFormation(location,0,12,"Infantry");
     }
@@ -221,7 +238,6 @@ public class LeaderAI : MonoBehaviour{
         }
     }
 
-
     List<int> GetArmyNumbers(){
         int nbInf = 0;
         int nbArch = 0;
@@ -247,9 +263,29 @@ public class LeaderAI : MonoBehaviour{
         foreach(GameObject point in CapturePointList){
             if(point.tag == this.tag && !SpawnPointList.Contains(point)){
                 SpawnPointList.Add(point);
+                Mood -= 20;                                                                                         //--- Mood Change When Gain
             }
             if(point.tag != this.tag && SpawnPointList.Contains(point)){
+                Mood += 20;                                                                                         //--- Mood Change When Lost
                 SpawnPointList.Remove(point);
+                switch(Attitude){
+                    case "Defensive": 
+                        Objective = point;
+                        IsAttacking = true;
+                        break;
+                    case "Neutral":
+                        if(Random.Range(0,10)<7){
+                            Objective = point;
+                            IsAttacking = true;
+                        };
+                        break;
+                    case "Aggresive":
+                        if(Random.Range(0,10)<2){
+                            Objective = point;
+                            IsAttacking = true;
+                        };
+                        break;
+                }
             }
         }
     }
@@ -265,19 +301,121 @@ public class LeaderAI : MonoBehaviour{
     }
 
     //Recrutement
-    void Recrutement(){
-
+    void RecruteMilitia(){
         foreach(GameObject point in SpawnPointList){
             if(!CheckIfDefended(point) && TotalUnitPoints > 70 && point != SpawnPointList[0] && Formations.Count <= FormationCap){
                 SpawnMilitiaDivision(point);
                 TotalUnitPoints -= 70;
             }
         }
-
-
-
     }
 
-    //Tactics
+    /*void RecruteScouts(GameObject CP){
+        if(TotalUnitPoints > 120 && CP != SpawnPointList[0] && Formations.Count <= FormationCap){
+            SpawnCavalryDivision(Reinforcing);
+            TotalUnitPoints -= 120;
+        }
+    }*/
     
+    void RecruteArmy(){
+        switch(Random.Range(0,2)){
+            case 0: 
+                if(TotalUnitPoints > 80 && Formations.Count <= FormationCap){
+                    SpawnInfantryDivision(Reinforcing);
+                    TotalUnitPoints -= 80;
+                };
+                break;
+            case 1: 
+                if(TotalUnitPoints > 100 && Formations.Count <= FormationCap){
+                    SpawnArcherDivision(Reinforcing);
+                    TotalUnitPoints -= 100;
+                };
+                break;
+            default:
+                if(TotalUnitPoints > 120 && Formations.Count <= FormationCap){
+                    SpawnCavalryDivision(Reinforcing);
+                    TotalUnitPoints -= 120;
+                };
+                break;
+        }
+    }
+
+    void MakeDecision(){
+        switch(Attitude){
+            case "Defensive":
+                if(Random.Range(0,10)<2){
+                    SendAllFormationToObjective();
+                    IsAttacking = true;
+                }else{
+                    IsAttacking = false;
+                }
+                break;
+            case "Neutral":
+                if(Random.Range(0,10)<5){
+                    SendAllFormationToObjective();
+                    IsAttacking = true;
+                }else{
+                    IsAttacking = false;
+                }
+                break;
+            case "Aggresive":
+                if(Random.Range(0,10)<8){
+                    SendAllFormationToObjective();
+                    IsAttacking = true;
+                }else{
+                    IsAttacking = false;
+                }
+                break;
+        }
+    }
+
+    void ChangeObjective(){
+        bool needsDefend = false;
+        foreach(GameObject point in SpawnPointList){
+            if(point != SpawnPointList[0] && point.GetComponent<CapturePoints>().IsContested){
+                switch(Attitude){
+                    case "Defensive": 
+                        if(Random.Range(0,10)<8){
+                            Objective = point;
+                            IsAttacking = false;
+                        }
+                        break;
+                    case "Neutral":
+                        if(Random.Range(0,1)<1){
+                            Objective = point;
+                            IsAttacking = false;
+                        }
+                        break;
+                    case "Aggresive":
+                        if(Random.Range(0,10)<2){
+                            Objective = point;
+                            IsAttacking = false;
+                        }
+                        break;
+                }
+                needsDefend = true;
+            }
+        }
+        if(!needsDefend){
+            foreach(GameObject point in CapturePointList){
+                if(point.GetComponent<CapturePoints>().tag != team && point != SpawnPointList[0]){
+                    switch(Attitude){
+                        case "Aggresive":
+                            if(Random.Range(0,10)<8){Objective = point;}
+                            break;
+                        case "Neutral":
+                            if(Random.Range(0,1)<1){Objective = point;}
+                            break;
+                        default: 
+                            Objective = SpawnPointList[SpawnPointList.Count-1];
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
+    void ChangeReinforcing(){
+        Reinforcing = SpawnPointList[SpawnPointList.Count-1];
+    }
 }
