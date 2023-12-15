@@ -8,7 +8,7 @@ public class ScoutState : State
     public ChaseState chaseState;
     public PatrolState patrolState;
     public Vector3 scoutLocation;
-    public float scoutingRadius = 15.0f;
+    public float scoutingRadius = 10f;
 
     public GameObject agent;
     private UnityEngine.AI.NavMeshAgent navMeshAgent;

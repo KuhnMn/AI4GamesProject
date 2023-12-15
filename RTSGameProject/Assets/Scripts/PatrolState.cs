@@ -11,7 +11,7 @@ public class PatrolState : State
     public IdleState idleState;
     public ChaseState chaseState;
     public FormationState formationState;
-    public float patrolRadius = 15.0f;
+    public float patrolRadius = 10f;
     public float patrolTimeout = 10.0f;
     public bool returnToFormation;
 
