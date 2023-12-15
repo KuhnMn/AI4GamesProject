@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,7 @@ public class UnitStats : MonoBehaviour
 {
     [SerializeField] private Image HealthBar;
     public GameObject InFormation;
+    public GameObject DeathParticlePrefab;
     
 
     public int health;
@@ -33,6 +35,10 @@ public class UnitStats : MonoBehaviour
 
     void Update(){
         UpdateHeathBar();
+        if (isDead)
+        {
+            DestroyUnit();
+        }
     }
 
     public void TakeDamage(int enemyAttack)
@@ -117,4 +123,15 @@ public class UnitStats : MonoBehaviour
     public void UpdateHeathBar(){
         HealthBar.fillAmount = 1.0f - ((health * 1.0f) / (maxHealth * 1.0f));
     }
+
+    private void DestroyUnit()
+    {
+        Instantiate(DeathParticlePrefab, transform.position, Quaternion.identity);
+        if (InFormation != null)
+        {
+            InFormation.GetComponent<Formation>().unitList.Remove(gameObject);
+        }
+        Destroy(gameObject);
+    }
+
 }
