@@ -80,11 +80,11 @@ public class LeaderAI : MonoBehaviour{
         }*/
         
 
-        if(GameInfo.GetComponent<GameInfo>().seconds!=0 && GameInfo.GetComponent<GameInfo>().seconds % 40 == 0 && DecHasTrigger){
+        if(/*GameInfo.GetComponent<GameInfo>().seconds!=0 &&*/ GameInfo.GetComponent<GameInfo>().seconds % 30 == 0 && DecHasTrigger){
             ChangeObjective();
             MakeDecision();
             DecHasTrigger = false;
-        }else if(GameInfo.GetComponent<GameInfo>().seconds % 400 != 0){
+        }else if(GameInfo.GetComponent<GameInfo>().seconds % 30 != 0){
             DecHasTrigger = true;
         }
 
@@ -366,12 +366,8 @@ public class LeaderAI : MonoBehaviour{
                 }
                 break;
             case "Aggresive":
-                if(Random.Range(0,10)<8){
-                    SendAllFormationToObjective();
-                    IsAttacking = true;
-                }else{
-                    IsAttacking = false;
-                }
+                SendAllFormationToObjective();
+                IsAttacking = true;
                 break;
         }
     }
@@ -380,45 +376,48 @@ public class LeaderAI : MonoBehaviour{
         bool needsDefend = false;
         if(!SpawnPointList.Contains(CapturePointList[0])){
             Objective = CapturePointList[0];
-        }
-        foreach(GameObject point in SpawnPointList){
-            if(point != SpawnPointList[0] && point.GetComponent<CapturePoints>().IsContested){
-                switch(Attitude){
-                    case "Defensive": 
-                        if(Random.Range(0,10)<8){
-                            Objective = point;
-                            IsAttacking = false;
-                        }
-                        break;
-                    case "Neutral":
-                        if(Random.Range(0,1)<1){
-                            Objective = point;
-                            IsAttacking = false;
-                        }
-                        break;
-                    case "Aggresive":
-                        if(Random.Range(0,10)<2){
-                            Objective = point;
-                            IsAttacking = false;
-                        }
-                        break;
-                }
-                needsDefend = true;
-            }
-        }
-        if(!needsDefend){
-            foreach(GameObject point in CapturePointList){
-                if(point.GetComponent<CapturePoints>().tag != team && point != SpawnPointList[0]){
+        }else{
+            foreach(GameObject point in SpawnPointList){
+                if(point != SpawnPointList[0] && point.GetComponent<CapturePoints>().IsContested){
                     switch(Attitude){
-                        case "Aggresive":
-                            if(Random.Range(0,10)<8){Objective = point;}
+                        case "Defensive": 
+                            if(Random.Range(0,10)<8){
+                                Objective = point;
+                                IsAttacking = false;
+                                needsDefend = true;
+                            }
                             break;
                         case "Neutral":
-                            if(Random.Range(0,1)<1){Objective = point;}
+                            if(Random.Range(0,1)<1){
+                                Objective = point;
+                                IsAttacking = false;
+                                needsDefend = true;
+                            }
                             break;
-                        default: 
-                            Objective = SpawnPointList[SpawnPointList.Count-1];
+                        case "Aggresive":
+                            if(Random.Range(0,10)<2){
+                                Objective = point;
+                                IsAttacking = false;
+                                needsDefend = true;
+                            }
                             break;
+                    }
+                }
+            }
+            if(!needsDefend){
+                foreach(GameObject point in CapturePointList){
+                    if(point.GetComponent<CapturePoints>().tag != team && point != SpawnPointList[0]){
+                        switch(Attitude){
+                            case "Aggresive":
+                                if(Random.Range(0,10)<9){Objective = point;}
+                                break;
+                            case "Neutral":
+                                if(Random.Range(0,10)<5){Objective = point;}
+                                break;
+                            default: 
+                                Objective = SpawnPointList[SpawnPointList.Count-1];
+                                break;
+                        }
                     }
                 }
             }
