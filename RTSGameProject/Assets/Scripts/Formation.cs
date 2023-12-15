@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Formation : MonoBehaviour{
     
+    public string FormationName;
+    public string status;
     public Boolean isBroken = false;
     public List<GameObject> unitList = new List<GameObject>();
     

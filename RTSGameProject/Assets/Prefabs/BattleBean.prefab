@@ -378,6 +378,7 @@ MonoBehaviour:
   HealthBar: {fileID: 3806366146474260777}
   InFormation: {fileID: 0}
   DeathParticlePrefab: {fileID: 8728408204387302874, guid: 28545a00787045f4aa0852c9357a77e0, type: 3}
+
   health: 20
   attack: 3
   defense: 2

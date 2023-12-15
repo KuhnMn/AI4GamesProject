@@ -1471,7 +1471,7 @@ MonoBehaviour:
   maxHealth: 15
   attackRange: 15
   attackSpeed: 1
-  moveSpeed: 1
+  moveSpeed: 4
   visionRange: 20
   isDead: 0
   team: 0
