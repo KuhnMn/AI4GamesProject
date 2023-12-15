@@ -5113,7 +5113,8 @@ MonoBehaviour:
   GameInfo: {fileID: 217793673}
   team: 
   Mood: 0
-  MoodHasTrigger: 0
+  ArmyChoice: 
+  Attitude: 
   Priority: 0
   FormationCap: 0
   AvaibleUnits: []
@@ -5124,9 +5125,6 @@ MonoBehaviour:
   - {fileID: 1942231611}
   SpawnPointList:
   - {fileID: 140502692}
-  - {fileID: 965616770}
-  - {fileID: 573074266}
-  - {fileID: 1942231611}
   UnitTypeList:
   - {fileID: 9160758676041660141, guid: 576c516703651dc4daa4c625193fdf10, type: 3}
   - {fileID: 343108030132121130, guid: 7ef20054a7fe1b84ab0dbe50bcbe2084, type: 3}
@@ -5137,6 +5135,9 @@ MonoBehaviour:
   UnitPointsText: {fileID: 2131291623}
   MoodBar: {fileID: 612529606}
   MoodText: {fileID: 1155996159}
+  LastAction: 0
+  Objective: {fileID: 0}
+  CPDefended: []
 --- !u!4 &1155593613
 Transform:
   m_ObjectHideFlags: 0
@@ -6076,7 +6077,8 @@ MonoBehaviour:
   GameInfo: {fileID: 217793673}
   team: 
   Mood: 0
-  MoodHasTrigger: 0
+  ArmyChoice: 
+  Attitude: 
   Priority: 0
   FormationCap: 0
   AvaibleUnits: []
@@ -6087,9 +6089,6 @@ MonoBehaviour:
   - {fileID: 1942231611}
   SpawnPointList:
   - {fileID: 51980973}
-  - {fileID: 965616770}
-  - {fileID: 573074266}
-  - {fileID: 1942231611}
   UnitTypeList:
   - {fileID: 2342483766265555556, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
   - {fileID: 8158399000053564680, guid: 4c4dcd60a10e3404fad0e94d9560a391, type: 3}
@@ -6100,6 +6099,9 @@ MonoBehaviour:
   UnitPointsText: {fileID: 1774191200}
   MoodBar: {fileID: 185333221}
   MoodText: {fileID: 0}
+  LastAction: 0
+  Objective: {fileID: 0}
+  CPDefended: []
 --- !u!4 &1336549784
 Transform:
   m_ObjectHideFlags: 0
