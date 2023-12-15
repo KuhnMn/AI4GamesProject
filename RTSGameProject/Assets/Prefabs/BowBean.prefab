@@ -1472,7 +1472,7 @@ MonoBehaviour:
   attackRange: 15
   attackSpeed: 1
   moveSpeed: 4
-  visionRange: 20
+  visionRange: 30
   isDead: 0
   team: 0
 --- !u!114 &1067854967144738602

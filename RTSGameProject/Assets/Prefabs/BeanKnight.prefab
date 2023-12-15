@@ -192,12 +192,12 @@ MonoBehaviour:
   InFormation: {fileID: 0}
   DeathParticlePrefab: {fileID: 8728408204387302874, guid: 28545a00787045f4aa0852c9357a77e0, type: 3}
   health: 30
-  attack: 4
-  defense: 5
+  attack: 5
+  defense: 4
   maxHealth: 30
-  attackRange: 3
+  attackRange: 4
   attackSpeed: 1
-  moveSpeed: 4
+  moveSpeed: 8
   visionRange: 20
   isDead: 0
   team: 0

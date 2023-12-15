@@ -39,6 +39,10 @@ public class AttackState : State
 
             return chaseState;
         }
+        else if (findEnemies.enemiesInRange[0].Item2 == null)
+        { 
+            return this;
+        }
         else
         {
             navMeshAgent.SetDestination(agent.transform.position);
