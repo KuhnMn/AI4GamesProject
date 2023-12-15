@@ -18,6 +18,8 @@ public class LeaderAI : MonoBehaviour{
     public int FormationCap = 0;
     public List<GameObject> AvaibleUnits = new List<GameObject>();
     public List<GameObject> Formations = new List<GameObject>();
+    public List<GameObject> Army = new List<GameObject>();
+    public List<List<GameObject>> Armys = new List<List<GameObject>>();
     public List<GameObject> CapturePointList = new List<GameObject>();
     public List<GameObject> SpawnPointList = new List<GameObject>();
 
@@ -39,7 +41,7 @@ public class LeaderAI : MonoBehaviour{
     // Start is called before the first frame update
     void Start(){
         Mood = (int) Random.Range(40,60);
-        TotalUnitPoints = 10;
+        TotalUnitPoints = 100;
         team = gameObject.tag;
         FormationCap = 20;
         switch(Random.Range(0,4)){
@@ -57,13 +59,14 @@ public class LeaderAI : MonoBehaviour{
         
         //Mood handler
         MoodHandler();
-
-
+        CheckAvaibleSpawnPoint();
+        Recrutement();
+        
         if(TotalUnitPoints>100){
-            SendFormationToPos(SpawnInfantryDivision(SpawnPointList[0]), CapturePointList[Random.Range(0, 3)].transform.position);
-            SendFormationToPos(SpawnArcherDivision(SpawnPointList[0]), CapturePointList[Random.Range(0, 3)].transform.position);
+            //SendFormationToPos(SpawnInfantryDivision(SpawnPointList[0]), CapturePointList[Random.Range(0, 3)].transform.position);
+            //SendFormationToPos(SpawnArcherDivision(SpawnPointList[0]), CapturePointList[Random.Range(0, 3)].transform.position);
             SendFormationToPos(SpawnCavalryDivision(SpawnPointList[0]), CapturePointList[Random.Range(0, 3)].transform.position);
-            SendFormationToPos(SpawnMilitiaDivision(SpawnPointList[0]), CapturePointList[Random.Range(0, 3)].transform.position);
+            //SendFormationToPos(SpawnMilitiaDivision(SpawnPointList[0]), CapturePointList[Random.Range(0, 3)].transform.position);
             TotalUnitPoints -= 100;
         }
 
@@ -128,7 +131,7 @@ public class LeaderAI : MonoBehaviour{
         }
         AvaibleUnitsCopie.Clear();
 
-        Formation.AddComponent<MoveTo>().goal = CapturePointList[Random.Range(0, 3)].transform.position; //goal
+        Formation.AddComponent<MoveTo>().goal = location.transform.position; //goal
         Formation.GetComponent<MoveTo>().speed = UnitTypeList[UnitId].GetComponent<UnitStats>().moveSpeed;
         return Formation;
     }
@@ -159,7 +162,7 @@ public class LeaderAI : MonoBehaviour{
         }
         AvaibleUnitsCopie.Clear();
 
-        Formation.AddComponent<MoveTo>().goal = CapturePointList[Random.Range(0, 3)].transform.position;
+        Formation.AddComponent<MoveTo>().goal = location.transform.position;
         float unit1Speed = UnitTypeList[Unit2Id].GetComponent<UnitStats>().moveSpeed;
         float unit2Speed = UnitTypeList[Unit2Id].GetComponent<UnitStats>().moveSpeed;
         if(unit1Speed < unit2Speed){
@@ -173,8 +176,9 @@ public class LeaderAI : MonoBehaviour{
     void SendFormationToPos(GameObject Formation, Vector3 Destination){
         if(Formation.GetComponent<MoveTo>().goal == null){
             Formation.AddComponent<MoveTo>().goal = Destination;
+        }else{
+            Formation.GetComponent<MoveTo>().goal = Destination;
         }
-        Formation.GetComponent<MoveTo>().goal = Destination;
     }
 
     private GameObject SpawnInfantryDivision(GameObject location){
@@ -243,7 +247,6 @@ public class LeaderAI : MonoBehaviour{
         foreach(GameObject point in CapturePointList){
             if(point.tag == this.tag && !SpawnPointList.Contains(point)){
                 SpawnPointList.Add(point);
-                SendFormationToPos(SpawnMilitiaDivision(point), point.transform.position);
             }
             if(point.tag != this.tag && SpawnPointList.Contains(point)){
                 SpawnPointList.Remove(point);
@@ -252,25 +255,25 @@ public class LeaderAI : MonoBehaviour{
     }
 
     bool CheckIfDefended(GameObject CapturePoint){
+        bool IsDefended = false;
         foreach(GameObject Formation in Formations){
             if(Formation.GetComponent<Formation>().FormationName == "Militia" && Formation.GetComponent<MoveTo>().goal == CapturePoint.transform.position){
-                return true;
+                IsDefended = true;
             }
         }
-        return false;
+        return IsDefended;
     }
 
-    //Recutement
-    void Recutement(){
+    //Recrutement
+    void Recrutement(){
 
         foreach(GameObject point in SpawnPointList){
-            if(!CheckIfDefended(CapturePoint)){
-                if(TotalUnitPoints > 70){
-                    SpawnMilitiaDivision(point);
-                    TotalUnitPoints -= 70;
-                }
+            if(!CheckIfDefended(point) && TotalUnitPoints > 70 && point != SpawnPointList[0] && Formations.Count <= FormationCap){
+                SpawnMilitiaDivision(point);
+                TotalUnitPoints -= 70;
             }
         }
+
 
 
     }
