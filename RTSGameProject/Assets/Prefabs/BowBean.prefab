@@ -1134,13 +1134,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 1100778308230467978}
+  InFormation: {fileID: 0}
   health: 15
   attack: 6
   defense: 1
   maxHealth: 15
   attackRange: 15
   attackSpeed: 1
-  moveSpeed: 1
+  moveSpeed: 4
   visionRange: 20
   isDead: 0
   team: 0

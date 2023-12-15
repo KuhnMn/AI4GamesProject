@@ -43,9 +43,9 @@ public class LeaderAI : MonoBehaviour{
     // Start is called before the first frame update
     void Start(){
         MoodHasTrigger = DecHasTrigger = true;
-        Mood = (int) Random.Range(40,60);
+        Mood = (int) Random.Range(20,80);
         IsAttacking = true;
-        TotalUnitPoints = 100;
+        TotalUnitPoints = 150;
         team = gameObject.tag;
         FormationCap = 20;
         Reinforcing = SpawnPointList[0];
@@ -80,11 +80,11 @@ public class LeaderAI : MonoBehaviour{
         }*/
         
 
-        if(GameInfo.GetComponent<GameInfo>().seconds!=0 && GameInfo.GetComponent<GameInfo>().seconds % 20 == 0 && DecHasTrigger){
+        if(GameInfo.GetComponent<GameInfo>().seconds!=0 && GameInfo.GetComponent<GameInfo>().seconds % 40 == 0 && DecHasTrigger){
             ChangeObjective();
             MakeDecision();
             DecHasTrigger = false;
-        }else if(GameInfo.GetComponent<GameInfo>().seconds % 10 != 0){
+        }else if(GameInfo.GetComponent<GameInfo>().seconds % 400 != 0){
             DecHasTrigger = true;
         }
 
@@ -215,6 +215,13 @@ public class LeaderAI : MonoBehaviour{
     }
 
     void MoodHandler(){
+        if(Mood > 100){
+            Mood = 100;
+        }
+        if(Mood < 0){
+            Mood = 0;
+        }
+
         if(GameInfo.GetComponent<GameInfo>().seconds % 5 == 0 && MoodHasTrigger){
             if(Mood < 100){
                 Mood--;
@@ -318,7 +325,7 @@ public class LeaderAI : MonoBehaviour{
     }*/
     
     void RecruteArmy(){
-        switch(Random.Range(0,2)){
+        switch(Random.Range(0,3)){
             case 0: 
                 if(TotalUnitPoints > 80 && Formations.Count <= FormationCap){
                     SpawnInfantryDivision(Reinforcing);
@@ -371,6 +378,9 @@ public class LeaderAI : MonoBehaviour{
 
     void ChangeObjective(){
         bool needsDefend = false;
+        if(!SpawnPointList.Contains(CapturePointList[0])){
+            Objective = CapturePointList[0];
+        }
         foreach(GameObject point in SpawnPointList){
             if(point != SpawnPointList[0] && point.GetComponent<CapturePoints>().IsContested){
                 switch(Attitude){

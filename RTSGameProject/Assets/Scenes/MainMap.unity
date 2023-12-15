@@ -2496,6 +2496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CapturedBy: 
+  IsContested: 0
   ScoreBB: 50
   ScoreGB: 50
   NbOfGB: 0
@@ -4351,6 +4352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CapturedBy: 
+  IsContested: 0
   ScoreBB: 50
   ScoreGB: 50
   NbOfGB: 0
@@ -5113,16 +5115,14 @@ MonoBehaviour:
   GameInfo: {fileID: 217793673}
   team: 
   Mood: 0
-  ArmyChoice: 
   Attitude: 
-  Priority: 0
   FormationCap: 0
   AvaibleUnits: []
   Formations: []
   CapturePointList:
-  - {fileID: 965616770}
-  - {fileID: 573074266}
   - {fileID: 1942231611}
+  - {fileID: 573074266}
+  - {fileID: 965616770}
   SpawnPointList:
   - {fileID: 140502692}
   UnitTypeList:
@@ -5135,9 +5135,9 @@ MonoBehaviour:
   UnitPointsText: {fileID: 2131291623}
   MoodBar: {fileID: 612529606}
   MoodText: {fileID: 1155996159}
-  LastAction: 0
   Objective: {fileID: 0}
-  CPDefended: []
+  Reinforcing: {fileID: 0}
+  IsAttacking: 0
 --- !u!4 &1155593613
 Transform:
   m_ObjectHideFlags: 0
@@ -6077,9 +6077,7 @@ MonoBehaviour:
   GameInfo: {fileID: 217793673}
   team: 
   Mood: 0
-  ArmyChoice: 
   Attitude: 
-  Priority: 0
   FormationCap: 0
   AvaibleUnits: []
   Formations: []
@@ -6099,9 +6097,9 @@ MonoBehaviour:
   UnitPointsText: {fileID: 1774191200}
   MoodBar: {fileID: 185333221}
   MoodText: {fileID: 0}
-  LastAction: 0
   Objective: {fileID: 0}
-  CPDefended: []
+  Reinforcing: {fileID: 0}
+  IsAttacking: 0
 --- !u!4 &1336549784
 Transform:
   m_ObjectHideFlags: 0
@@ -7845,6 +7843,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CapturedBy: 
+  IsContested: 0
   ScoreBB: 0
   ScoreGB: 0
   NbOfGB: 0
