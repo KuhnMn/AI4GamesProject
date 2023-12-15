@@ -30,6 +30,11 @@ public class LeaderAI : MonoBehaviour{
     [SerializeField] private Image MoodBar;
     [SerializeField] private Text MoodText;
 
+    //Memory
+    public int LastAction;
+    public GameObject Objective;
+    public List<GameObject> CPDefended = new List<GameObject>();
+
 
     // Start is called before the first frame update
     void Start(){
@@ -52,7 +57,6 @@ public class LeaderAI : MonoBehaviour{
         
         //Mood handler
         MoodHandler();
-        CheckAvaibleSpawnPoint();
 
 
         if(TotalUnitPoints>100){
@@ -66,9 +70,16 @@ public class LeaderAI : MonoBehaviour{
         /*
         1: Check Score
         2: Check Capture Points
+        CheckAvaibleSpawnPoint();
+        Check If CP has Militia
+
+
         3: Checks Army
-        4.1: Recrutement
+
+        4.1: Recrutement missing units
+
         4.2: Launch Assault
+
         5: 
         */
 
@@ -232,6 +243,7 @@ public class LeaderAI : MonoBehaviour{
         foreach(GameObject point in CapturePointList){
             if(point.tag == this.tag && !SpawnPointList.Contains(point)){
                 SpawnPointList.Add(point);
+                SendFormationToPos(SpawnMilitiaDivision(point), point.transform.position);
             }
             if(point.tag != this.tag && SpawnPointList.Contains(point)){
                 SpawnPointList.Remove(point);
@@ -239,8 +251,27 @@ public class LeaderAI : MonoBehaviour{
         }
     }
 
+    bool CheckIfDefended(GameObject CapturePoint){
+        foreach(GameObject Formation in Formations){
+            if(Formation.GetComponent<Formation>().FormationName == "Militia" && Formation.GetComponent<MoveTo>().goal == CapturePoint.transform.position){
+                return true;
+            }
+        }
+        return false;
+    }
+
     //Recutement
     void Recutement(){
+
+        foreach(GameObject point in SpawnPointList){
+            if(!CheckIfDefended(CapturePoint)){
+                if(TotalUnitPoints > 70){
+                    SpawnMilitiaDivision(point);
+                    TotalUnitPoints -= 70;
+                }
+            }
+        }
+
 
     }
 
