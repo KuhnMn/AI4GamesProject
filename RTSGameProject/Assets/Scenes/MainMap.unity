@@ -150,7 +150,7 @@ TerrainCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 12014142}
   m_Material: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_TerrainData: {fileID: 15600000, guid: a2c56738977647443a37238da8d567ee, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &12014144
@@ -2507,6 +2507,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: be458b0df654aa84fb0d2c559b3e1672, type: 2}
   - {fileID: 2100000, guid: b8760d4e97024174d899ee302043475b, type: 2}
   Icon: {fileID: 2135059023}
+  unitsInCP: []
 --- !u!1 &576167172
 GameObject:
   m_ObjectHideFlags: 0
@@ -4363,6 +4364,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: be458b0df654aa84fb0d2c559b3e1672, type: 2}
   - {fileID: 2100000, guid: b8760d4e97024174d899ee302043475b, type: 2}
   Icon: {fileID: 1393360515}
+  unitsInCP: []
 --- !u!1 &979172855
 GameObject:
   m_ObjectHideFlags: 0
@@ -7854,6 +7856,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: be458b0df654aa84fb0d2c559b3e1672, type: 2}
   - {fileID: 2100000, guid: b8760d4e97024174d899ee302043475b, type: 2}
   Icon: {fileID: 1717270224}
+  unitsInCP: []
 --- !u!54 &1942231617
 Rigidbody:
   m_ObjectHideFlags: 0
