@@ -48,7 +48,7 @@ public class ChaseState : State
         }
         else
         {
-            if (findEnemies.enemiesInRange.Count > 0)
+            if (findEnemies.enemiesInRange.Count > 0 && findEnemies.enemiesInRange[0].Item2 != null)
             {
                 navMeshAgent.SetDestination(findEnemies.enemiesInRange[0].Item2.transform.position);
             }

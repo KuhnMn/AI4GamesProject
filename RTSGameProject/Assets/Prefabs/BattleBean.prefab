@@ -380,7 +380,7 @@ MonoBehaviour:
   DeathParticlePrefab: {fileID: 8728408204387302874, guid: 28545a00787045f4aa0852c9357a77e0, type: 3}
   health: 20
   attack: 6
-  defense: 3
+  defense: 4
   maxHealth: 20
   attackRange: 1
   attackSpeed: 1.5
