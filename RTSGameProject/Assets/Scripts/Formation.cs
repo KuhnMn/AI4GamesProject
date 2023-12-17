@@ -113,7 +113,7 @@ public class Formation : MonoBehaviour{
         }
         if (unitList.Count == 0){
             Leader.GetComponent<LeaderAI>().Formations.Remove(this.gameObject);
-            Leader.GetComponent<LeaderAI>().Mood -= 15;
+            Leader.GetComponent<LeaderAI>().Mood += 15;
             Destroy(gameObject);
         }
     }
