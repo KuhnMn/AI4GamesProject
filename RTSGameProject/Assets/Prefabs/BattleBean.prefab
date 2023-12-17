@@ -382,7 +382,7 @@ MonoBehaviour:
   attack: 6
   defense: 4
   maxHealth: 20
-  attackRange: 1
+  attackRange: 3
   attackSpeed: 1.5
   moveSpeed: 3
   visionRange: 15

@@ -111,7 +111,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1522199865731790485}
-  - component: {fileID: 1522199865731790484}
+  - component: {fileID: 8449985964805745197}
   - component: {fileID: 1522199865731790487}
   - component: {fileID: 9045696878119306773}
   - component: {fileID: 7081858382817909257}
@@ -141,8 +141,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1522199865731790484
-BoxCollider:
+--- !u!136 &8449985964805745197
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -151,9 +151,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.2, y: 3, z: 2}
-  m_Center: {x: 0, y: 1.5, z: -0.3}
+  m_Radius: 1
+  m_Height: 4
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.5, z: -0.5}
 --- !u!195 &1522199865731790487
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -195,7 +196,7 @@ MonoBehaviour:
   attack: 6
   defense: 3
   maxHealth: 30
-  attackRange: 4
+  attackRange: 3
   attackSpeed: 1
   moveSpeed: 8
   visionRange: 20
