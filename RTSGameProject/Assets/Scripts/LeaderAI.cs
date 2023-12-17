@@ -309,9 +309,9 @@ public class LeaderAI : MonoBehaviour{
     //Recrutement
     void RecruteMilitia(){
         foreach(GameObject point in SpawnPointList){
-            if(!CheckIfDefended(point) && TotalUnitPoints > 150 && point != SpawnPointList[0] && Formations.Count <= FormationCap){
+            if(!CheckIfDefended(point) && TotalUnitPoints > 100 && point != SpawnPointList[0] && Formations.Count <= FormationCap){
                 SpawnMilitiaDivision(point);
-                TotalUnitPoints -= 150;
+                TotalUnitPoints -= 100;
             }
         }
     }
