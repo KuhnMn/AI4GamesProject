@@ -9,7 +9,7 @@ public class Formation : MonoBehaviour{
     public string status;
     public Boolean isBroken = false;
     public List<GameObject> unitList = new List<GameObject>();
-    
+    public GameObject Leader;
 
     //public String status;
     //public bool fighting;
@@ -111,8 +111,8 @@ public class Formation : MonoBehaviour{
 
 
         }
-        if (unitList.Count == 0)
-        {
+        if (unitList.Count == 0){
+            Leader.GetComponent<LeaderAI>().Formations.Remove(this.gameObject);
             Destroy(gameObject);
         }
     }

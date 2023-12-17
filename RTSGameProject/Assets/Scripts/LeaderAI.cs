@@ -109,6 +109,7 @@ public class LeaderAI : MonoBehaviour{
     private GameObject SpawnFormation(GameObject location, int UnitId, int UnitNumber, string FormationName){
         GameObject Formation = Instantiate(FormationPrefab, location.transform.position, Quaternion.identity);
         Formation.GetComponent<Formation>().FormationName = FormationName;
+        Formation.GetComponent<Formation>().Leader = this.gameObject;
 
         for(int i = 0; i < UnitNumber; i++){
             GameObject Bean = Instantiate(UnitTypeList[UnitId], location.transform.position, Quaternion.identity);
@@ -134,6 +135,7 @@ public class LeaderAI : MonoBehaviour{
     private GameObject SpawnDuelUnitFormation(GameObject location, int Unit1Id, int Unit1Number, int Unit2Id, int Unit2Number, string FormationName){
         GameObject Formation = Instantiate(FormationPrefab, location.transform.position, Quaternion.identity);
         Formation.GetComponent<Formation>().FormationName = FormationName;
+        Formation.GetComponent<Formation>().Leader = this.gameObject;
 
         for(int i = 0; i < Unit1Number; i++){
             GameObject Bean = Instantiate(UnitTypeList[Unit1Id], location.transform.position, Quaternion.identity);
