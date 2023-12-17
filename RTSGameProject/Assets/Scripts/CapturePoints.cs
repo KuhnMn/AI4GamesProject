@@ -19,6 +19,7 @@ public class CapturePoints : MonoBehaviour{
     [SerializeField] private RawImage Icon;
     private Color Green;
     private Color Red;
+    public List<GameObject> unitsInCP = new List<GameObject>();
 
     Renderer rend;
 
@@ -59,6 +60,17 @@ public class CapturePoints : MonoBehaviour{
             IsContested = true;
         }
         
+        NbOfGB = 0;
+        NbOfBB = 0;
+        foreach(GameObject unit in unitsInCP){
+            if (unit.gameObject.tag == "BadBean"){
+                NbOfBB++;
+            }
+            if (unit.gameObject.tag == "GoodBean"){
+                NbOfGB++;
+            }
+        }
+        
         if(Timer>1){
             if(ScoreBB<100){
                 if(NbOfBB>NbOfGB){
@@ -77,20 +89,10 @@ public class CapturePoints : MonoBehaviour{
     }
 
     void OnTriggerEnter(Collider collider){
-        if (collider.gameObject.tag == "BadBean"){
-            NbOfBB++;
-        }
-        if (collider.gameObject.tag == "GoodBean"){
-            NbOfGB++;
-        }
+        unitsInCP.Add(collider.gameObject);
     }
 
     void OnTriggerExit(Collider collider){
-        if (collider.gameObject.tag == "BadBean"){
-            NbOfBB--;
-        }
-        if (collider.gameObject.tag == "GoodBean"){
-            NbOfGB--;
-        }
+        unitsInCP.Remove(collider.gameObject);
     }
 }

@@ -41,7 +41,6 @@ public class Formation : MonoBehaviour{
             }
             if (allIdle)
             {
-                Debug.Log("All Idle");
                 isBroken = false;
                 foreach (GameObject unit in unitList)
                 {

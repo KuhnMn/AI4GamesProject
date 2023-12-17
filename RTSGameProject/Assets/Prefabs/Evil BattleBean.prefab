@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 521794586878642994}
   - component: {fileID: 6244498671077546375}
   - component: {fileID: 605226520999947893}
-  - component: {fileID: 7039778575039895808}
   m_Layer: 0
   m_Name: EyeBrowL (1)
   m_TagString: Untagged
@@ -82,19 +81,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7039778575039895808
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5369166799757444969}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8603500603768387048
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +92,6 @@ GameObject:
   - component: {fileID: 3689244582439562137}
   - component: {fileID: 6941479603144407420}
   - component: {fileID: 5494059352031674146}
-  - component: {fileID: 9000467079271649959}
   m_Layer: 0
   m_Name: EyeBrowR (1)
   m_TagString: Untagged
@@ -177,19 +162,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &9000467079271649959
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8603500603768387048}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &6891529880847703177
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -197,6 +169,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 164587591273884262, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 680399545114074964, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2068594484585567169, guid: f348f961e64842c4c8d68e3eda2ce47f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

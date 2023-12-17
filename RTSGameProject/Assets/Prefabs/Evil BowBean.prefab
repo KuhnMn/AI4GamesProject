@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1013249048000260517}
   - component: {fileID: 7647786956235234342}
   - component: {fileID: 8970871264064139785}
-  - component: {fileID: 8447541146173859335}
   m_Layer: 0
   m_Name: EyeBrowL
   m_TagString: Untagged
@@ -82,19 +81,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8447541146173859335
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3217889274471103585}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5781095235538943560
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +92,6 @@ GameObject:
   - component: {fileID: 2277763283027259401}
   - component: {fileID: 4855349814460120820}
   - component: {fileID: 659817573911157122}
-  - component: {fileID: 2553602595460227651}
   m_Layer: 0
   m_Name: EyeBrowR
   m_TagString: Untagged
@@ -177,19 +162,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2553602595460227651
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5781095235538943560}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &8501250480041863970
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -197,9 +169,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 88396923558535253, guid: 4c4dcd60a10e3404fad0e94d9560a391, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 809722160630782719, guid: 4c4dcd60a10e3404fad0e94d9560a391, type: 3}
       propertyPath: team
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929822849019438697, guid: 4c4dcd60a10e3404fad0e94d9560a391, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6139456523602952596, guid: 4c4dcd60a10e3404fad0e94d9560a391, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8158398999292813940, guid: 4c4dcd60a10e3404fad0e94d9560a391, type: 3}
       propertyPath: m_Materials.Array.data[0]

@@ -131,6 +131,9 @@ public class UnitStats : MonoBehaviour
         {
             InFormation.GetComponent<Formation>().unitList.Remove(gameObject);
         }
+        foreach(GameObject CP in InFormation.GetComponent<Formation>().Leader.GetComponent<LeaderAI>().CapturePointList){
+            CP.GetComponent<CapturePoints>().unitsInCP.Remove(this.gameObject);
+        }
         Destroy(gameObject);
     }
 
