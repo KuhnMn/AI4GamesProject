@@ -407,21 +407,24 @@ public class LeaderAI : MonoBehaviour{
             }
             // Checks if he's doing nothing
             if(!needsDefend && !IsAttacking){
+                List<GameObject> tempList = new List<GameObject>();
                 foreach(GameObject point in CapturePointList){
                     if(point != SpawnPointList[0] && point.GetComponent<CapturePoints>().CapturedBy != team){
-                        switch(Attitude){
-                            case "Aggresive":
-                                if(Random.Range(0,10)<9){Objective = point;}
-                                break;
-                            case "Neutral":
-                                if(Random.Range(0,10)<5){Objective = point;}
-                                break;
-                            default:
-                                if(Random.Range(0,10)<2){Objective = point;}
-                                Objective = SpawnPointList[SpawnPointList.Count-1];
-                                break;
-                        }
+                        tempList.Add(point);
                     }
+                }
+                int newObjective = Random.Range(0,tempList.Count-1);
+                switch(Attitude){
+                    case "Aggresive":
+                        if(Random.Range(0,10)<9){Objective = tempList[newObjective];}
+                        break;
+                    case "Neutral":
+                        if(Random.Range(0,10)<5){Objective = tempList[newObjective];}
+                        break;
+                    default:
+                        if(Random.Range(0,10)<2){Objective = tempList[newObjective];}
+                        //Objective = SpawnPointList[SpawnPointList.Count-1];
+                        break;
                 }
             }
             if(IsAttacking && Attitude == "Defensive"){
