@@ -413,7 +413,7 @@ public class LeaderAI : MonoBehaviour{
                         tempList.Add(point);
                     }
                 }
-                int newObjective = Random.Range(0,tempList.Count-1);
+                int newObjective = Random.Range(0,tempList.Count);
                 switch(Attitude){
                     case "Aggresive":
                         if(Random.Range(0,10)<9){Objective = tempList[newObjective];}

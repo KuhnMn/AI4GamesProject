@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameInfo : MonoBehaviour{
     private float Timer = 0;
@@ -31,8 +32,11 @@ public class GameInfo : MonoBehaviour{
         Timer += Time.deltaTime;
         clock += Time.deltaTime;
 
-        if(GBScore >= 1000 || BBScore >= 1000){
-            Debug.Log("VICTORY");
+        if(GBScore >= 1000){
+            SceneManager.LoadScene("GBVictory");
+        }
+        if(BBScore >= 1000){
+            SceneManager.LoadScene("BBVictory");
         }
         
         if(Timer>1){
