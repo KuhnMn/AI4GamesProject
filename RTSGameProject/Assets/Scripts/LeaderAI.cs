@@ -66,6 +66,11 @@ public class LeaderAI : MonoBehaviour{
         //Mood handler
         MoodHandler();
         CheckAvaibleSpawnPoint();
+        // Checks if he's captured the Objective
+        if(IsAttacking && SpawnPointList.Contains(Objective)){
+            IsAttacking = false;
+        }
+        ChangeReinforcing();
         RecruteMilitia();
         if(TotalUnitPoints>120){
             RecruteArmy();
@@ -412,15 +417,14 @@ public class LeaderAI : MonoBehaviour{
                                 if(Random.Range(0,10)<5){Objective = point;}
                                 break;
                             default:
-                                if(Random.Range(0,10)<5){Objective = point;}
+                                if(Random.Range(0,10)<2){Objective = point;}
                                 Objective = SpawnPointList[SpawnPointList.Count-1];
                                 break;
                         }
                     }
                 }
             }
-            // Checks if he's captured the Objective
-            if(IsAttacking && SpawnPointList.Contains(Objective)){
+            if(IsAttacking && Attitude == "Defensive"){
                 IsAttacking = false;
             }
         }
