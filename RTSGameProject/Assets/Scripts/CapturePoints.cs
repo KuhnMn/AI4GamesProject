@@ -53,10 +53,10 @@ public class CapturePoints : MonoBehaviour{
             Icon.color = Green;
         }
 
-        if(ScoreBB !=0 || ScoreBB !=100){
-            IsContested = true;
-        }else{
+        if(ScoreBB == 0 || ScoreBB == 100){
             IsContested = false;
+        }else{
+            IsContested = true;
         }
         
         if(Timer>1){

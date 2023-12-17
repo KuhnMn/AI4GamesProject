@@ -45,9 +45,9 @@ public class LeaderAI : MonoBehaviour{
         MoodHasTrigger = DecHasTrigger = true;
         Mood = (int) Random.Range(20,80);
         IsAttacking = true;
-        TotalUnitPoints = 150;
+        TotalUnitPoints = 250;
         team = gameObject.tag;
-        FormationCap = 20;
+        FormationCap = 10;
         Reinforcing = SpawnPointList[0];
         Objective = CapturePointList[0];
         /*switch(Random.Range(0,4)){
@@ -70,21 +70,13 @@ public class LeaderAI : MonoBehaviour{
         if(TotalUnitPoints>120){
             RecruteArmy();
         }
-        /*
-        if(TotalUnitPoints>100){
-            //SendFormationToPos(SpawnInfantryDivision(SpawnPointList[0]), CapturePointList[Random.Range(0, 3)].transform.position);
-            //SendFormationToPos(SpawnArcherDivision(SpawnPointList[0]), CapturePointList[Random.Range(0, 3)].transform.position);
-            SendFormationToPos(SpawnCavalryDivision(SpawnPointList[0]), CapturePointList[Random.Range(0, 3)].transform.position);
-            //SendFormationToPos(SpawnMilitiaDivision(SpawnPointList[0]), CapturePointList[Random.Range(0, 3)].transform.position);
-            TotalUnitPoints -= 100;
-        }*/
         
 
-        if(/*GameInfo.GetComponent<GameInfo>().seconds!=0 &&*/ GameInfo.GetComponent<GameInfo>().seconds % 30 == 0 && DecHasTrigger){
+        if(GameInfo.GetComponent<GameInfo>().seconds!=0 && GameInfo.GetComponent<GameInfo>().seconds % 10 == 0 && DecHasTrigger){
             ChangeObjective();
             MakeDecision();
             DecHasTrigger = false;
-        }else if(GameInfo.GetComponent<GameInfo>().seconds % 30 != 0){
+        }else if(GameInfo.GetComponent<GameInfo>().seconds % 10 != 0){
             DecHasTrigger = true;
         }
 
@@ -270,10 +262,10 @@ public class LeaderAI : MonoBehaviour{
         foreach(GameObject point in CapturePointList){
             if(point.tag == this.tag && !SpawnPointList.Contains(point)){
                 SpawnPointList.Add(point);
-                Mood -= 20;                                                                                         //--- Mood Change When Gain
+                Mood -= 10;                                                                                         //--- Mood Change When Gain
             }
             if(point.tag != this.tag && SpawnPointList.Contains(point)){
-                Mood += 20;                                                                                         //--- Mood Change When Lost
+                Mood += 30;                                                                                         //--- Mood Change When Lost
                 SpawnPointList.Remove(point);
                 switch(Attitude){
                     case "Defensive": 
@@ -376,9 +368,11 @@ public class LeaderAI : MonoBehaviour{
         bool needsDefend = false;
         if(!SpawnPointList.Contains(CapturePointList[0])){
             Objective = CapturePointList[0];
+            IsAttacking = true;
         }else{
+            // Checks if he's being attacked
             foreach(GameObject point in SpawnPointList){
-                if(point != SpawnPointList[0] && point.GetComponent<CapturePoints>().IsContested){
+                if(point != SpawnPointList[0] && point.GetComponent<CapturePoints>().IsContested && point.GetComponent<CapturePoints>().CapturedBy == "Neutral"){
                     switch(Attitude){
                         case "Defensive": 
                             if(Random.Range(0,10)<8){
@@ -404,9 +398,10 @@ public class LeaderAI : MonoBehaviour{
                     }
                 }
             }
-            if(!needsDefend){
+            // Checks if he's doing nothing
+            if(!needsDefend && !IsAttacking){
                 foreach(GameObject point in CapturePointList){
-                    if(point.GetComponent<CapturePoints>().tag != team && point != SpawnPointList[0]){
+                    if(point != SpawnPointList[0] && point.GetComponent<CapturePoints>().CapturedBy != team){
                         switch(Attitude){
                             case "Aggresive":
                                 if(Random.Range(0,10)<9){Objective = point;}
@@ -414,12 +409,17 @@ public class LeaderAI : MonoBehaviour{
                             case "Neutral":
                                 if(Random.Range(0,10)<5){Objective = point;}
                                 break;
-                            default: 
+                            default:
+                                if(Random.Range(0,10)<5){Objective = point;}
                                 Objective = SpawnPointList[SpawnPointList.Count-1];
                                 break;
                         }
                     }
                 }
+            }
+            // Checks if he's captured the Objective
+            if(IsAttacking && SpawnPointList.Contains(Objective)){
+                IsAttacking = false;
             }
         }
     }
